@@ -1,5 +1,8 @@
+# Class: profile::base
+#
+#
 class profile::base {
-
-  #the base profile should include component modules that will be on all nodes
-
+  package { 'glibc-langpack-de':
+    ensure => installed
+  }
 }

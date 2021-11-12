@@ -1,0 +1,2 @@
+---
+puppetdb::postgres_version: '11'
