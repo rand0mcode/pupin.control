@@ -1,0 +1,3 @@
+---
+profile::puppet::compiler::puppetdb_host: "puppetdb.%{facts.domain}"
+profile::puppet::compiler::control_repo: 'https://github.com/rand0mcode/pupin.control.git'

@@ -2,8 +2,8 @@
 #
 #
 class profile::puppet::compiler (
-  String $puppetdb_host = 'puppetdb.priv.example42.cloud',
-  String $control_repo  = 'https://github.com/rand0mcode/pupin.control.git',
+  String $puppetdb_host,
+  String $control_repo,
 ){
   include git
 
