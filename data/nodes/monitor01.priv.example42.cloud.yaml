@@ -5,10 +5,6 @@ additional_classes:
 additional_files:
   /opt/consul:
     ensure: directory
-  /opt/consul/data:
-    ensure: directory
-  /opt/consul/bin:
-    ensure: directory
 
 # Consul
 consul::version: 1.10.4
