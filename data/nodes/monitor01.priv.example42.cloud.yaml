@@ -2,7 +2,7 @@
 additional_classes:
   - profile::monitoring::consul
 
-additional_file:
+additional_files:
   /opt/consul:
     ensure: directory
   /opt/consul/data:
