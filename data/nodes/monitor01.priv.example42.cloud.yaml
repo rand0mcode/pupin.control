@@ -1,7 +1,9 @@
 ---
 additional_classes:
-  - profile::monitoring::consul
   - profile::nginx
+  - profile::monitoring::consul
+  - profile::monitoring::prometheus::server
+  - profile::monitoring::prometheus::node_exporter
 
 # Consul
 consul::version: 1.10.4
