@@ -4,7 +4,7 @@
 class profile::monitoring::prometheus::server {
   include prometheus::server
 
-  file { "/etc/prometheus/${trusted['certname']}.key":
+  file { "/etc/prometheus/puppet_${trusted['certname']}.key":
     ensure  => 'file',
     owner   => 'prometheus',
     group   => 'prometheus',
