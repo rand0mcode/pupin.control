@@ -1,6 +1,7 @@
 ---
 additional_classes:
   - profile::monitoring::consul
+  - profile::nginx
 
 # Consul
 consul::version: 1.10.4
@@ -34,7 +35,7 @@ consul::config_hash:
     # https://www.consul.io/docs/agent/options.html#telemetry-prometheus_retention_time
     prometheus_retention_time: '20s'
 
-consule::services:
+consul::services:
   node-exporter:
     checks:
       - name: node_exporter health check
