@@ -31,5 +31,6 @@ node default {
   }
 
   $additional_classes  = lookup('additional_classes', Array[String[1]], 'unique', [])
+  notify { "found classes: ${additional_classes}": }
   include $additional_classes
 }
