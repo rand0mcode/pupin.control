@@ -10,10 +10,12 @@ consul::archive_path: /opt/consul/bin
 
 consul::config_hash:
   bootstrap_expect: 1
+  bind_addr: "%{facts.networking.interfaces.ens10.ip}"
   ca_file: '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
   cert_file: "/etc/puppetlabs/puppet/ssl/certs/%{trusted.certname}.pem"
   data_dir: /opt/consul/data
   datacenter: rand0mcode
+  disable_update_check: true
   domain: consul
   enable_script_checks: true
   encrypt: 'benutz_mich_bitte_nicht_productive!123'
@@ -26,7 +28,6 @@ consul::config_hash:
   ui: true
   verify_incoming: true
   verify_outgoing: true
-
   telemetry:
     disable_hostname: true
     # Retention should be 2 times poll intervall or higher
