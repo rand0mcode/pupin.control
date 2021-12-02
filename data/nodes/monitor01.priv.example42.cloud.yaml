@@ -33,3 +33,76 @@ consul::config_hash:
     # Retention should be 2 times poll intervall or higher
     # https://www.consul.io/docs/agent/options.html#telemetry-prometheus_retention_time
     prometheus_retention_time: '20s'
+
+consule::services:
+  node-exporter:
+    checks:
+      - name: node_exporter health check
+        http: 'http://127.0.0.1:9100'
+        interval: '10s'
+        timeout: '1s'
+    port: 9100
+    address: "%{trusted.certname}"
+    tags:
+      - node-exporter
+
+  consul-metrics:
+    checks:
+      - name: 'consul API health check'
+        http: 'http://127.0.0.1:8500'
+        interval: '10s'
+        timeout: '1s'
+    port: 8501
+    address: "%{trusted.certname}"
+    tags:
+      - 'consul-server'
+
+nginx::nginx_locations:
+  allow-only-metrics:
+    ensure: 'present'
+    server: 'consul_metrics'
+    location: '/v1/agent/metrics'
+    location_allow:
+      - '127.0.0.1'
+      - "%{facts.networking.interfaces.ens10.ip}"
+    location_deny:
+      - 'all'
+    ssl: true
+    ssl_only: true
+    proxy: 'http://localhost:8500'
+
+nginx::nginx_servers:
+  node_exporter:
+    listen_ip: "%{facts.networking.interfaces.ens10.ip}"
+    ipv6_enable: false
+    server_name:
+      - "%{trusted.certname}"
+    listen_port: 9100
+    ssl_port: 9100
+    proxy: 'http://127.0.0.1:9100'
+    ssl: true
+    ssl_redirect: false
+    ssl_key: "/etc/nginx/puppet_%{trusted.certname}.key"
+    ssl_cert: "/etc/nginx/puppet_%{trusted.certname}.crt"
+    ssl_crl: '/etc/nginx/puppet_crl.pem'
+    ssl_client_cert: '/etc/nginx/puppet_ca.pem'
+    ssl_protocols: 'TLSv1.2'
+    ssl_verify_client: 'on'
+
+  consul_metrics:
+    listen_ip: "%{facts.networking.interfaces.ens10.ip}"
+    ipv6_enable: false
+    server_name:
+      - "%{trusted.certname}"
+    listen_port: 8501
+    ssl_port: 8501
+    ssl: true
+    ssl_redirect: false
+    ssl_key: "/etc/nginx/puppet_%{trusted.certname}.key"
+    ssl_cert: "/etc/nginx/puppet_%{trusted.certname}.crt"
+    ssl_crl: '/etc/nginx/puppet_crl.pem'
+    ssl_client_cert: '/etc/nginx/puppet_ca.pem'
+    ssl_protocols: 'TLSv1.2'
+    ssl_verify_client: 'on'
+    location_deny:
+      - all

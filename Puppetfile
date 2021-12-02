@@ -18,5 +18,6 @@ mod 'puppetlabs-inifile',    :latest
 mod 'puppetlabs-stdlib',     :latest
 
 # monitoring
+mod 'puppet-nginx',          :latest
 mod 'KyleAnderson-consul',   :latest
 mod 'puppet-prometheus',     :latest
