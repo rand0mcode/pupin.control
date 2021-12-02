@@ -29,4 +29,10 @@ node default {
     notify { "trusted pp_role: ${trusted['extensions']['pp_role']}": }
     include "role::${trusted['extensions']['pp_role']}"
   }
+
+  $additional_classes  = lookup('additional_classes', Array[String[1]], 'unique', [])
+
+  unless empty($additional_classes) {
+    include $additional_classes
+  }
 }

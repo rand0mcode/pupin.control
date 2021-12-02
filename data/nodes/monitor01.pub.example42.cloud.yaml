@@ -1,0 +1,34 @@
+---
+additional_classes:
+  - profile::monitoring::consul
+
+# Consul
+consul::version: 1.10.4
+consul::pretty_config: true
+consul::enable_beta_ui: true
+consul::archive_path: /opt/consul/bin
+
+consul::config_hash:
+  bootstrap_expect: 1
+  ca_file: '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
+  cert_file: "/etc/puppetlabs/puppet/ssl/certs/%{trusted.certname}.pem"
+  data_dir: /opt/consul/data
+  datacenter: rand0mcode
+  domain: consul
+  enable_script_checks: true
+  encrypt: 'benutz_mich_bitte_nicht_productive!123'
+  key_file: "/etc/consul.d/%{trusted.certname}.pem"
+  leave_on_terminate: true
+  log_level: INFO
+  node_name: "%{facts.networking.fqdn}"
+  rejoin_after_leave: true
+  server: true
+  ui: true
+  verify_incoming: true
+  verify_outgoing: true
+
+  telemetry:
+    disable_hostname: true
+    # Retention should be 2 times poll intervall or higher
+    # https://www.consul.io/docs/agent/options.html#telemetry-prometheus_retention_time
+    prometheus_retention_time: '20s'
