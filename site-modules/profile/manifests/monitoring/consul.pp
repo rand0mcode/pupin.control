@@ -1,7 +1,7 @@
 # Class: profile::monitoring::consul
 #
 #
-class profile::consul {
+class profile::monitoring::consul {
   include consul
 
   file { "/etc/consul.d/${trusted['certname']}.pem":

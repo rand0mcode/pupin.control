@@ -31,8 +31,5 @@ node default {
   }
 
   $additional_classes  = lookup('additional_classes', Array[String[1]], 'unique', [])
-
-  unless empty($additional_classes) {
-    include $additional_classes
-  }
+  include $additional_classes
 }
