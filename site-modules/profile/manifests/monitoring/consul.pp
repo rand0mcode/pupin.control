@@ -2,9 +2,17 @@
 #
 #
 class profile::monitoring::consul {
+  file { '/opt/consul':
+    ensure => 'directory',
+  }
+
+  package { 'unzip':
+    ensure => 'installed'
+  }
+
   include consul
 
-  file { "/etc/consul.d/${trusted['certname']}.pem":
+  file { "/opt/consul/${trusted['certname']}.pem":
     ensure  => 'file',
     owner   => 'consul',
     group   => 'consul',
