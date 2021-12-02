@@ -19,7 +19,7 @@ consul::config_hash:
   domain: consul
   enable_script_checks: true
   encrypt: 'eULfS8WtGp5QF8kvakzjgstf6tyfNd0/dWYHggU0CS8='
-  key_file: "/etc/consul.d/%{trusted.certname}.pem"
+  key_file: "/opt/consul/%{trusted.certname}.pem"
   leave_on_terminate: true
   log_level: INFO
   node_name: "%{facts.networking.fqdn}"
