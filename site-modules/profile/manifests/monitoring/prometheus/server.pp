@@ -2,7 +2,7 @@
 #
 #
 class profile::monitoring::prometheus::server {
-  include prometheus
+  include prometheus::server
 
   file { "/etc/prometheus/${trusted['certname']}.key":
     ensure  => 'file',
