@@ -7,8 +7,6 @@ class profile::base {
   }
 
   host { $facts['networking']['fqdn']:
-    ensure       => absent,
-    host_aliases => $facts['networking']['hostname'],
-    ip           => $facts['networking']['interfaces']['ens10']['ip'],
+    ensure => absent,
   }
 }
