@@ -32,8 +32,8 @@ node default {
     }
   }
 
-  notify { "Dies ist ein fehler":
-    loglevel => 'err',
+  notify { 'Dies ist ein fehler':
+    loglevel => 'emerg',
   }
 
   if $trusted['extensions']['pp_role'] {
