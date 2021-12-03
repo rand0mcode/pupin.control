@@ -32,6 +32,10 @@ node default {
     }
   }
 
+  notify { "Dies ist ein fehler":
+    loglevel => 'err',
+  }
+
   if $trusted['extensions']['pp_role'] {
     include "role::${trusted['extensions']['pp_role']}"
   }
