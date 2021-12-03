@@ -32,12 +32,12 @@ node default {
     }
   }
 
-  notify { 'Dies ist ein fehler':
-    loglevel => 'emerg',
-  }
-
   if $trusted['extensions']['pp_role'] {
     include "role::${trusted['extensions']['pp_role']}"
+  } else {
+    notify { 'no role found':
+      loglevel => 'err',
+    }
   }
 
   $additional_classes  = lookup('additional_classes', Array[String[1]], 'unique', [])
