@@ -26,7 +26,6 @@ class profile::monitoring::prometheus::node_exporter (
     ssl_client_cert   => '/etc/nginx/puppet_ca.pem',
     ssl_crl           => '/etc/nginx/puppet_crl.pem',
     ssl_key           => "/etc/nginx/puppet_${trusted['certname']}.key",
-    ssl_only          => true,
     ssl_port          => 9100,
     ssl_protocols     => 'TLSv1.2',
     ssl_redirect      => true,
