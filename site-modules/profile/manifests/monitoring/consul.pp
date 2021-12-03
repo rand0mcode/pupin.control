@@ -12,6 +12,7 @@ class profile::monitoring::consul {
 
   include consul
 
+  # copy puppet key into consul dir
   file { "/opt/consul/${trusted['certname']}.pem":
     ensure  => 'file',
     owner   => 'consul',

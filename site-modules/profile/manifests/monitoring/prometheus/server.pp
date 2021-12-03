@@ -4,6 +4,7 @@
 class profile::monitoring::prometheus::server {
   include prometheus::server
 
+  # copy puppet certs into prometheus dir to use them for querying with client_cert
   file { "/etc/prometheus/puppet_${trusted['certname']}.key":
     ensure  => 'file',
     owner   => 'prometheus',
