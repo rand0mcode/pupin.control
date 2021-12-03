@@ -4,7 +4,7 @@
 class profile::monitoring::prometheus::node_exporter (
   String $version = '1.3.0'
 ){
-  include nginx
+  include profile::nginx
 
   class { 'prometheus::node_exporter':
     collectors_enable => ['diskstats','filesystem','meminfo','netdev','netstat','stat','time',
