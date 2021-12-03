@@ -16,8 +16,9 @@ mod 'puppetlabs-apt',        :latest
 mod 'puppetlabs-concat',     :latest
 mod 'puppetlabs-inifile',    :latest
 mod 'puppetlabs-stdlib',     :latest
+mod 'puppetlabs-host_core',  :latest
 
-# monitoring
+# services
 mod 'puppet-nginx',          :latest
 mod 'KyleAnderson-consul',   :latest
 mod 'puppet-prometheus',     :latest

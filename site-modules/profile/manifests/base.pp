@@ -6,17 +6,9 @@ class profile::base {
     ensure => installed
   }
 
-  host { 'remove default 127.0.0.1 fqdn entries':
+  host { $facts['networking']['fqdn']:
     ensure       => absent,
-    name         => $facts['networking']['fqdn'],
     host_aliases => $facts['networking']['hostname'],
-    ip           => '127.0.0.1',
-  }
-
-  host { 'remove default ::1 fqdn entries':
-    ensure       => absent,
-    name         => $facts['networking']['fqdn'],
-    host_aliases => $facts['networking']['hostname'],
-    ip           => '::1',
+    ip           => $facts['networking']['interfaces']['ens10']['ip'],
   }
 }
