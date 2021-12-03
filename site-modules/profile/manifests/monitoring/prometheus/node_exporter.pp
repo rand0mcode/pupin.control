@@ -16,19 +16,20 @@ class profile::monitoring::prometheus::node_exporter (
   }
 
   nginx::resource::server { 'node_exporter':
+    ipv6_enable       => false,
     listen_ip         => $facts['networking']['interfaces']['ens10']['ip'],
-    ipv6_enable       => true,
-    server_name       => [$trusted['certname']],
     listen_port       => 9100,
-    ssl_port          => 9100,
     proxy             => 'http://127.0.0.1:9100',
+    server_name       => [$trusted['certname']],
     ssl               => true,
-    ssl_redirect      => true,
-    ssl_key           => "/etc/nginx/puppet_${trusted['certname']}.key",
     ssl_cert          => "/etc/nginx/puppet_${trusted['certname']}.crt",
-    ssl_crl           => '/etc/nginx/puppet_crl.pem',
     ssl_client_cert   => '/etc/nginx/puppet_ca.pem',
+    ssl_crl           => '/etc/nginx/puppet_crl.pem',
+    ssl_key           => "/etc/nginx/puppet_${trusted['certname']}.key",
+    ssl_only          => true,
+    ssl_port          => 9100,
     ssl_protocols     => 'TLSv1.2',
+    ssl_redirect      => true,
     ssl_verify_client => 'on',
   }
 }
