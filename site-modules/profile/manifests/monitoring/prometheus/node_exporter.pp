@@ -16,7 +16,7 @@ class profile::monitoring::prometheus::node_exporter (
   }
 
   nginx::resource::server { 'node_exporter':
-    ipv6_enable       => false,
+    ipv6_enable       => true,
     listen_ip         => $facts['networking']['interfaces']['ens10']['ip'],
     listen_port       => 9100,
     proxy             => 'http://127.0.0.1:9100',
