@@ -17,13 +17,13 @@ class profile::monitoring::prometheus::node_exporter (
 
   nginx::resource::server { 'node_exporter':
     listen_ip         => $facts['networking']['interfaces']['ens10']['ip'],
-    ipv6_enable       => false,
+    ipv6_enable       => true,
     server_name       => [$trusted['certname']],
     listen_port       => 9100,
     ssl_port          => 9100,
     proxy             => 'http://127.0.0.1:9100',
     ssl               => true,
-    ssl_redirect      => false,
+    ssl_redirect      => true,
     ssl_key           => "/etc/nginx/puppet_${trusted['certname']}.key",
     ssl_cert          => "/etc/nginx/puppet_${trusted['certname']}.crt",
     ssl_crl           => '/etc/nginx/puppet_crl.pem',
