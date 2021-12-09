@@ -1,7 +1,7 @@
-# Class: profile::monitoring::consul
+# Class: profile::monitoring::consul::server
 #
 #
-class profile::monitoring::consul {
+class profile::monitoring::consul::server {
   file { '/opt/consul':
     ensure => 'directory',
   }
@@ -10,6 +10,7 @@ class profile::monitoring::consul {
     ensure => 'installed'
   }
 
+  # has to be run before the pem so that the consul user is present
   include consul
 
   # copy puppet key into consul dir

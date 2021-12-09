@@ -1,25 +1,20 @@
 ---
-consul::version: 1.10.4
-consul::pretty_config: true
-consul::enable_beta_ui: true
-consul::archive_path: /opt/consul/bin
-
 consul::config_hash:
   bootstrap_expect: 1
   # hetzner second and private interface
   bind_addr: "%{facts.networking.interfaces.ens10.ip}"
   ca_file: '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
   cert_file: "/etc/puppetlabs/puppet/ssl/certs/%{trusted.certname}.pem"
-  data_dir: /opt/consul/data
-  datacenter: rand0mcode
+  data_dir: '/opt/consul/data'
+  datacenter: 'rand0mcode'
   disable_update_check: true
-  domain: consul
+  domain: 'consul'
   enable_script_checks: true
   # static secret `consul keygen`
   encrypt: 'eULfS8WtGp5QF8kvakzjgstf6tyfNd0/dWYHggU0CS8='
   key_file: "/opt/consul/%{trusted.certname}.pem"
   leave_on_terminate: true
-  log_level: INFO
+  log_level: 'INFO'
   node_name: "%{facts.networking.fqdn}"
   rejoin_after_leave: true
   server: true
@@ -33,17 +28,6 @@ consul::config_hash:
     prometheus_retention_time: '20s'
 
 consul::services:
-  node-exporter:
-    checks:
-      - name: node_exporter health check
-        http: 'http://127.0.0.1:9100'
-        interval: '10s'
-        timeout: '1s'
-    port: 9100
-    address: "%{trusted.certname}"
-    tags:
-      - node-exporter
-
   consul-metrics:
     checks:
       - name: 'consul API health check'
@@ -86,4 +70,4 @@ nginx::nginx_servers:
     ssl_protocols: 'TLSv1.2'
     ssl_verify_client: 'on'
     location_deny:
-      - all
+      - 'all'
