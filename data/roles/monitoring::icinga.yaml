@@ -28,6 +28,9 @@ icinga2::constants:
   NodeName: "%{trusted.certname}"
   ZoneName: "%{trusted.certname}"
 
+icinga2::confd: false
+icinga2::manage_repos: true
+
 icinga2::feature::api::accept_config: false
 icinga2::feature::api::accept_commands: true
 icinga2::feature::api::pki: puppet
@@ -37,8 +40,6 @@ icinga2::feature::api::zones:
   "%{trusted.certname}":
     endpoints:
       - "%{trusted.certname}"
-
-icinga2::confd: false
 
 icinga2::feature::idomysql::database: icinga_ido
 icinga2::feature::idomysql::user: icinga_ido
