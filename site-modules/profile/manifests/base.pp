@@ -5,7 +5,11 @@ class profile::base {
   # install locale package
   # on macos the locale is transfered over the ssh connection which can be confusing
   package { 'glibc-langpack-de':
-    ensure => installed
+    ensure => 'installed'
+  }
+
+  package { 'dnf-plugins-core':
+    ensure => 'installed'
   }
 
   # remove own hostname from /etc/hosts

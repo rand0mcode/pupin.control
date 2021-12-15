@@ -17,6 +17,9 @@ mysql::server::db:
       - "ALL"
 
 ### Icinga2 Server #############################################################
+# enable epel-testing for monitoring plugins
+epel::epel_testing_enabled: true
+
 icinga2::features:
   - api
   - checker
