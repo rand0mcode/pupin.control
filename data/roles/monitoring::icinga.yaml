@@ -50,5 +50,5 @@ icinga2::feature::api::zones:
 
 icinga2::feature::idomysql::database: 'icinga_ido'
 icinga2::feature::idomysql::user: 'icinga_ido'
-icinga2::feature::idomysql::password: icinga_ido
+icinga2::feature::idomysql::password: icinga_ido2
 icinga2::feature::idomysql::import_schema: false
