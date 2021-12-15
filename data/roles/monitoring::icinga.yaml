@@ -26,7 +26,7 @@ icinga2::features:
 
 icinga2::constants:
   NodeName: "%{trusted.certname}"
-  ZoneName: Master
+  ZoneName: "%{trusted.certname}"
 
 icinga2::feature::api::accept_config: false
 icinga2::feature::api::accept_commands: true
@@ -37,9 +37,6 @@ icinga2::feature::api::zones:
   "%{trusted.certname}":
     endpoints:
       - "%{trusted.certname}"
-
-  global_zone:
-    global: true
 
 icinga2::confd: false
 
