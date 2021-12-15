@@ -22,3 +22,5 @@ mod 'puppetlabs-host_core',  :latest
 mod 'puppet-nginx',          :latest
 mod 'KyleAnderson-consul',   :latest
 mod 'puppet-prometheus',     :latest
+mod 'icinga-icinga2',        '3.1.3'
+mod 'puppetlabs-mysql',      :latest
