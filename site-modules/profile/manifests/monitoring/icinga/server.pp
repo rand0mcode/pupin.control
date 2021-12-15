@@ -12,7 +12,7 @@ class profile::monitoring::icinga::server (
   exec { '/usr/bin/yum config-manager --set-enabled powertools': }
 
   include icinga::repos
-  include mysql
+  include mysql::server
   include icinga2
 
   ensure_resource('package', 'nagios-plugins-all', { 'ensure' => 'latest' })
