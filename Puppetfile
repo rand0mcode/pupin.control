@@ -11,16 +11,17 @@ mod 'puppetlabs-puppetdb',   :latest
 
 # core puppet
 mod 'puppet-archive',        :latest
+mod 'puppet-selinux',        :latest
 mod 'puppet-systemd',        :latest
 mod 'puppetlabs-apt',        :latest
 mod 'puppetlabs-concat',     :latest
+mod 'puppetlabs-host_core',  :latest
 mod 'puppetlabs-inifile',    :latest
 mod 'puppetlabs-stdlib',     :latest
-mod 'puppetlabs-host_core',  :latest
 
 # services
-mod 'puppet-nginx',          :latest
-mod 'KyleAnderson-consul',   :latest
-mod 'puppet-prometheus',     :latest
 mod 'icinga-icinga2',        '3.1.3'
+mod 'KyleAnderson-consul',   :latest
+mod 'puppet-nginx',          :latest
+mod 'puppet-prometheus',     :latest
 mod 'puppetlabs-mysql',      :latest
