@@ -15,6 +15,8 @@ class profile::base {
     ensure => absent,
   }
 
+  if $facts['os']['family'] == 'RedHat' { include epel }
+
   include profile::puppet::agent
   include profile::monitoring::prometheus::node_exporter
 }

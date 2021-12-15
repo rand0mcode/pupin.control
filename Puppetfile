@@ -11,6 +11,7 @@ mod 'puppetlabs-puppetdb',   :latest
 
 # core puppet
 mod 'puppet-archive',        :latest
+mod 'puppet-epel',           :latest
 mod 'puppet-selinux',        :latest
 mod 'puppet-systemd',        :latest
 mod 'puppetlabs-apt',        :latest
