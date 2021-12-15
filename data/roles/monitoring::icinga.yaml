@@ -33,6 +33,7 @@ icinga2::constants:
 
 icinga2::confd: false
 icinga2::manage_repos: true
+icinga2::manage_packages: true
 
 icinga2::feature::api::accept_config: false
 icinga2::feature::api::accept_commands: true
