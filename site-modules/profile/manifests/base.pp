@@ -14,4 +14,6 @@ class profile::base {
   host { $facts['networking']['fqdn']:
     ensure => absent,
   }
+
+  include profile::monitoring::prometheus::node_exporter
 }

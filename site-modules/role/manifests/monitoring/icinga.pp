@@ -1,8 +1,8 @@
 # Class: role::monitoring::consul
 #
 #
-class role::monitoring::consul {
+class role::monitoring::icinga {
   include profile::base
   include profile::nginx
-  include profile::monitoring::consul::server
+  include profile::monitoring::icinga::server
 }

@@ -1,0 +1,49 @@
+---
+### Database ###################################################################
+mysql::server::override_options:
+  mysqld:
+    bind-address: '127.0.0.1'
+    pid-file: /var/lib/mysql/mariadb.pid
+    log-error: null
+    character-set-server: utf8
+    collation-server: utf8_unicode_ci
+
+mysql::server::db:
+  icinga_ido:
+    user: icinga_ido
+    password: icinga_ido
+    host: localhost
+    grant:
+      - "ALL"
+
+### Icinga2 Server #############################################################
+icinga2::features:
+  - api
+  - checker
+  - idomysql
+  - mainlog
+  - notification
+
+icinga2::constants:
+  NodeName: "%{trusted.certname}"
+  ZoneName: Master
+
+icinga2::feature::api::accept_config: false
+icinga2::feature::api::accept_commands: true
+icinga2::feature::api::pki: puppet
+icinga2::feature::api::endpoints:
+  "%{trusted.certname}": {}
+icinga2::feature::api::zones:
+  "%{trusted.certname}":
+    endpoints:
+      - "%{trusted.certname}"
+
+  global_zone:
+    global: true
+
+icinga2::confd: false
+
+icinga2::feature::idomysql::database: icinga_ido
+icinga2::feature::idomysql::user: icinga_ido
+icinga2::feature::idomysql::password: icinga_ido
+icinga2::feature::idomysql::import_schema: true
