@@ -15,5 +15,6 @@ class profile::base {
     ensure => absent,
   }
 
+  include profile::puppet::agent
   include profile::monitoring::prometheus::node_exporter
 }
