@@ -10,12 +10,10 @@ class profile::puppet::compiler (
   class { 'r10k':
     sources => {
       puppet => {
-        remote  => $control_repo,
-        basedir => '/etc/puppetlabs/code/environments',
-        prefix  => false,
-        deploy  => {
-          generate_types => true,
-        },
+        remote         => $control_repo,
+        basedir        => '/etc/puppetlabs/code/environments',
+        prefix         => false,
+        generate_types => true,
       },
     },
   }
