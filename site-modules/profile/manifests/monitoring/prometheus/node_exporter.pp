@@ -62,6 +62,12 @@ class profile::monitoring::prometheus::node_exporter (
     ssl_verify_client => 'on',
   }
 
+  firewall { '100 allow prometheus access':
+    dport  => [9100],
+    proto  => 'tcp',
+    action => 'accept',
+  }
+
   if $consul {
     include profile::monitoring::consul::client
 
