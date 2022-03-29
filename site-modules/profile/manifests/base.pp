@@ -1,7 +1,9 @@
 # Class: profile::base
 #
 #
-class profile::base {
+class profile::base (
+  Boolean $enable_prometheus = false,
+){
   # install locale package
   # on macos the locale is transfered over the ssh connection which can be confusing
   package { 'glibc-langpack-de':
@@ -22,5 +24,6 @@ class profile::base {
   if $facts['os']['family'] == 'RedHat' { include epel }
 
   include profile::puppet::agent
-  include profile::monitoring::prometheus::node_exporter
+
+  if $enable_prometheus { include profile::monitoring::prometheus::node_exporter }
 }
