@@ -4,17 +4,18 @@
 class profile::puppet::compiler (
   String $puppetdb_host,
   String $control_repo,
+  String $r10k_version,
+  Array[String[1]] $r10k_purge,
 ){
   include git
 
   class { 'r10k':
-    sources => {
-      puppet => {
-        remote  => $control_repo,
-        basedir => '/etc/puppetlabs/code/environments',
-        prefix  => false,
-      },
-    },
+    remote          => $control_repo,
+    version         => $r10k_version,
+    deploy_settings => {
+      purge_levels   => $r10k_purge,
+      generate_types => true,
+    }
   }
 
   cron { 'update_puppet_envs':
