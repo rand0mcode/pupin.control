@@ -3,11 +3,19 @@ version: 5
 
 defaults:
   datadir: "data"
+  data_hash: yaml_data
 
 hierarchy:
-  - name: "Yaml backend"
-    data_hash: yaml_data
+  - name: "Nodes and Roles"
     paths:
       - "nodes/%{trusted.certname}.yaml"
       - "roles/%{trusted.extensions.pp_role}.yaml"
-      - "common.yaml"
+
+  - name: "Environments"
+    path: "env/%{::environment}.yaml"
+
+  - name: "Defaults"
+    glob: "defaults/*.yaml"
+
+  - name: "Common"
+    path: "common.yaml"

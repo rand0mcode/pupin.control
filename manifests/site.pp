@@ -25,7 +25,21 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
+  $additional_files = lookup('additional_files', Hash, 'hash', {})
+  $additional_files.each |String $file_name, Hash $file_data| {
+    file { $file_name:
+      * => $file_data
+    }
+  }
+
   if $trusted['extensions']['pp_role'] {
     include "role::${trusted['extensions']['pp_role']}"
+  } else {
+    notify { 'no role found':
+      loglevel => 'err',
+    }
   }
+
+  $additional_classes  = lookup('additional_classes', Array[String[1]], 'unique', [])
+  include $additional_classes
 }

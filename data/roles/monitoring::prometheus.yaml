@@ -1,0 +1,57 @@
+---
+### Prometheus #################################################################
+prometheus::server::version: 2.31.1
+prometheus::bin_dir: /bin
+prometheus::extra_options: '--web.enable-admin-api'
+
+
+prometheus::server::scrape_configs:
+  - job_name: 'puppetdb-node-exporter'
+    scrape_interval: '10s'
+    scrape_timeout: '10s'
+    scheme: 'https'
+    tls_config:
+      ca_file: '/etc/prometheus/puppet_ca.pem'
+      cert_file: "/etc/prometheus/puppet_%{trusted.certname}.crt"
+      key_file: "/etc/prometheus/puppet_%{trusted.certname}.key"
+    puppetdb_sd_configs:
+    # This example discovers the nodes which have the class Prometheus::Node_exporter.
+      - url: https://puppetdb.priv.rw.betadots.training:8081
+        query: 'resources { type = "Class" and title = "Prometheus::Node_exporter" }'
+        port: 9100
+        tls_config:
+          cert_file: "/etc/prometheus/puppet_%{trusted.certname}.crt"
+          key_file: "/etc/prometheus/puppet_%{trusted.certname}.key"
+          ca_file: '/etc/prometheus/puppet_ca.pem'
+
+  - job_name: 'consul-node-exporter'
+    scrape_interval: '10s'
+    scrape_timeout: '10s'
+    scheme: 'https'
+    tls_config:
+      ca_file: '/etc/prometheus/puppet_ca.pem'
+      cert_file: "/etc/prometheus/puppet_%{trusted.certname}.crt"
+      key_file: "/etc/prometheus/puppet_%{trusted.certname}.key"
+    consul_sd_configs:
+      - server: 'localhost:8500'
+        services:
+          - 'node-exporter'
+        scheme: 'http'
+
+  - job_name: 'consul-metrics'
+    scrape_interval: '10s'
+    scrape_timeout: '10s'
+    scheme: 'https'
+    metrics_path: '/v1/agent/metrics'
+    params:
+      format:
+        - 'prometheus'
+    tls_config:
+      ca_file: '/etc/prometheus/puppet_ca.pem'
+      cert_file: "/etc/prometheus/puppet_%{trusted.certname}.crt"
+      key_file: "/etc/prometheus/puppet_%{trusted.certname}.key"
+    consul_sd_configs:
+      - server: 'localhost:8500'
+        services:
+          - 'consul-metrics'
+        scheme: 'http'
