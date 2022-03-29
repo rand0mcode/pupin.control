@@ -17,6 +17,12 @@ class profile::puppet::compiler (
     },
   }
 
+  cron { 'update_puppet_envs':
+    ensure  => present,
+    command => '/opt/puppetlabs/puppet/bin/r10k deploy environment -pv > /var/log/puppetlabs/last_r10k_cron_run.log 2>&1',
+    minute  => '*/10',
+  }
+
   class { 'puppetdb::master::config':
     puppetdb_server => $puppetdb_host,
   }
