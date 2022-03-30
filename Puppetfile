@@ -1,17 +1,30 @@
 forge 'https://forge.puppet.com'
 
 # Modules from the Puppet Forge
-# Versions should be updated to be the latest at the time you start
-#mod 'puppetlabs/inifile', '5.0.1'
-#mod 'puppetlabs/stdlib',  '7.0.1'
-#mod 'puppetlabs/concat',  '7.0.1'
 
-# Modules from Git
-# Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
-#mod 'apache',
-#  git:    'https://github.com/puppetlabs/puppetlabs-apache',
-#  commit: '1b6f89afdde0df7f9433a163d5c4b5328eac5779'
+# core infrastructure
+mod 'puppet-r10k',           :latest
+mod 'puppetlabs-firewall',   :latest
+mod 'puppetlabs-git',        :latest
+mod 'puppetlabs-postgresql', :latest
+mod 'puppetlabs-puppetdb',   :latest
 
-#mod 'apache',
-#  git:    'https://github.com/puppetlabs/puppetlabs-apache',
-#  branch: 'docs_experiment'
+# core puppet
+mod 'puppet-archive',        :latest
+mod 'puppet-epel',           :latest
+mod 'puppet-selinux',        :latest
+mod 'puppet-systemd',        :latest
+mod 'puppetlabs-apt',        :latest
+mod 'puppetlabs-concat',     :latest
+mod 'puppetlabs-host_core',  :latest
+mod 'puppetlabs-inifile',    :latest
+mod 'puppetlabs-stdlib',     :latest
+
+# services
+mod 'icinga-icinga2',        :latest
+mod 'icinga-icinga',         :latest
+mod 'KyleAnderson-consul',   :latest
+mod 'puppet-kibana',         :latest
+mod 'puppet-nginx',          :latest
+mod 'puppet-prometheus',     :latest
+mod 'puppetlabs-mysql',      :latest

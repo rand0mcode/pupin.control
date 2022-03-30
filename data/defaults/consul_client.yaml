@@ -1,0 +1,25 @@
+---
+consul::version: 1.10.4
+consul::pretty_config: true
+consul::enable_beta_ui: true
+consul::archive_path: '/opt/consul/bin'
+
+consul::config_hash:
+  # hetzner second and private interface
+  bind_addr: "%{facts.networking.interfaces.ens10.ip}"
+  ca_file: '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
+  cert_file: "/etc/puppetlabs/puppet/ssl/certs/%{trusted.certname}.pem"
+  data_dir: '/opt/consul/data'
+  datacenter: 'rand0mcode'
+  disable_update_check: true
+  enable_script_checks: true
+  # static secret `consul keygen`
+  encrypt: 'eULfS8WtGp5QF8kvakzjgstf6tyfNd0/dWYHggU0CS8='
+  key_file: "/opt/consul/%{trusted.certname}.pem"
+  log_level: 'INFO'
+  node_name: "%{facts.networking.fqdn}"
+  ui: true
+  verify_incoming: true
+  verify_outgoing: true
+  retry_join:
+    - 'prometheus'
