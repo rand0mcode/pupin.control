@@ -27,7 +27,7 @@ File { backup => false }
 node default {
   $ret = try() || {
     include "role::${trusted['extensions']['pp_role']}"
-  }.catch |$exception| {
+  }.catch('EvaluationError', 'ServerError') |$exception| {
     notify { 'role not found, using default role':}
     include 'role::default'
   }
