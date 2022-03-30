@@ -25,14 +25,12 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
-  $ret = try() || {
+  try() || {
     include "role::${trusted['extensions']['pp_role']}"
   }.catch |$exception| {
     notify { 'role not found, using default role':}
     include 'role::default'
   }
-
-  notify { "Error: ${ret}": }
 
   include lookup('additional_classes', Array[String[1]], 'unique', [])
 
