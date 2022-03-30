@@ -24,10 +24,13 @@ mod 'puppetlabs-stdlib',     :latest
 mod 'icinga-icinga2',        :latest
 mod 'icinga-icinga',         :latest
 mod 'KyleAnderson-consul',   :latest
-mod 'puppet-kibana',         :latest
 mod 'puppet-nginx',          :latest
 mod 'puppet-prometheus',     :latest
 mod 'puppetlabs-mysql',      :latest
+
+# elastic
+# mod 'puppet-elastic_stack',  :latest
+mod 'puppet-kibana',         :latest
 
 # stuff
 mod 'dalen-trycatch',         :latest
