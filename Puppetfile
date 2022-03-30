@@ -29,7 +29,7 @@ mod 'puppet-prometheus',     :latest
 mod 'puppetlabs-mysql',      :latest
 
 # elastic
-# mod 'puppet-elastic_stack',  :latest
+mod 'puppet-elastic_stack',  :latest
 mod 'puppet-kibana',         :latest
 
 # stuff
