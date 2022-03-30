@@ -31,6 +31,7 @@ mod 'puppetlabs-mysql',      :latest
 # elastic
 mod 'puppet-elastic_stack',  :latest
 mod 'puppet-kibana',         :latest
+mod 'puppet-elasticsearch',  :latest
 
 # stuff
 mod 'dalen-trycatch',         :latest
