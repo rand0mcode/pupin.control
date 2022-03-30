@@ -32,13 +32,21 @@ node default {
     }
   }
 
-  if $trusted['extensions']['pp_role'] {
+
+  try() || {
     include "role::${trusted['extensions']['pp_role']}"
-  } else {
-    notify { 'no role found':
-      loglevel => 'err',
-    }
+  }.catch |$exception| {
+    notify { 'role not found, using default role':}
+    include 'role::default'
   }
+
+  # if $trusted['extensions']['pp_role'] {
+  #   include "role::${trusted['extensions']['pp_role']}"
+  # } else {
+  #   notify { 'no role found':
+  #     loglevel => 'err',
+  #   }
+  # }
 
   $additional_classes  = lookup('additional_classes', Array[String[1]], 'unique', [])
   include $additional_classes

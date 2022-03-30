@@ -28,3 +28,6 @@ mod 'puppet-kibana',         :latest
 mod 'puppet-nginx',          :latest
 mod 'puppet-prometheus',     :latest
 mod 'puppetlabs-mysql',      :latest
+
+# stuff
+mod 'dalen-trycatch',         :latest
