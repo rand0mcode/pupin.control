@@ -13,7 +13,7 @@ class profile::monitoring::elastic::search {
 
   contain elasticsearch
 
-  file { '/etc/elasticsearch/etc/elasticsearch/certs/puppet.cert.pem':
+  file { '/etc/elasticsearch/certs/puppet.cert.pem':
     ensure => file,
     owner  => 'elasticsearch',
     group  => 'elasticsearch',
@@ -21,7 +21,7 @@ class profile::monitoring::elastic::search {
     before => Service['elasticsearch'],
   }
 
-  file { '/etc/elasticsearch/etc/elasticsearch/certs/puppet.ca.pem':
+  file { '/etc/elasticsearch/certs/puppet.ca.pem':
     ensure => file,
     owner  => 'elasticsearch',
     group  => 'elasticsearch',
@@ -29,7 +29,7 @@ class profile::monitoring::elastic::search {
     before => Service['elasticsearch'],
   }
 
-  file { '/etc/elasticsearch/etc/elasticsearch/certs/puppet.key.pem':
+  file { '/etc/elasticsearch/certs/puppet.key.pem':
     ensure => file,
     owner  => 'elasticsearch',
     group  => 'elasticsearch',
