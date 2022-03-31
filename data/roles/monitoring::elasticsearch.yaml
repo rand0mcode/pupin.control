@@ -2,3 +2,25 @@
 elastic_stack::repo::version: 8
 elasticsearch::version: '8.1.1'
 elasticsearch::restart_on_change: true
+
+elasticsearch::config:
+  cluster.name: 'TestCluster'
+  http.port: 9200
+  network.host: "%{facts.networking.fqdn}"
+  node.name: "%{facts.networking.fqdn}"
+  action.destructive_requires_name: true
+
+  xpack.security.enabled: false
+  # xpack.security.transport.ssl.enabled: true
+  # xpack.security.transport.ssl.verification_mode: certificate
+  # xpack.security.transport.ssl.key: /etc/elasticsearch/key.pem
+  # xpack.security.transport.ssl.certificate: /etc/elasticsearch/cert.pem
+  # xpack.security.transport.ssl.certificate_authorities: [ "/etc/elasticsearch/ca.pem" ]
+
+  # xpack.security.http.ssl.enabled: true
+  # xpack.security.http.ssl.key: /etc/elasticsearch/key.pem
+  # xpack.security.http.ssl.certificate: /etc/elasticsearch/cert.pem
+  # xpack.security.http.ssl.certificate_authorities: [ "/etc/elasticsearch/ca.pem" ]
+
+  xpack.monitoring.enabled: true
+  xpack.monitoring.collection.enabled: true
