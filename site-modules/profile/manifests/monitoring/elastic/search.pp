@@ -17,6 +17,7 @@ class profile::monitoring::elastic::search {
     ensure => file,
     owner  => 'elasticsearch',
     group  => 'elasticsearch',
+    mode   => '0440',
     source => "/etc/puppetlabs/puppet/ssl/certs/${facts['networking']['fqdn']}.pem",
     before => Service['elasticsearch'],
   }
@@ -25,6 +26,7 @@ class profile::monitoring::elastic::search {
     ensure => file,
     owner  => 'elasticsearch',
     group  => 'elasticsearch',
+    mode   => '0440',
     source => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
     before => Service['elasticsearch'],
   }

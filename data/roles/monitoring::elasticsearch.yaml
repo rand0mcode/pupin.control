@@ -10,6 +10,9 @@ elasticsearch::config:
   node.name: "%{facts.networking.fqdn}"
   action.destructive_requires_name: true
 
+  discovery.seed_hosts:
+    - localhost
+
   xpack.security.enabled: false
   xpack.security.transport.ssl.enabled: true
   xpack.security.transport.ssl.verification_mode: certificate
