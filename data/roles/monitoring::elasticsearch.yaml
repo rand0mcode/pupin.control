@@ -21,6 +21,3 @@ elasticsearch::config:
   # xpack.security.http.ssl.key: /etc/elasticsearch/key.pem
   # xpack.security.http.ssl.certificate: /etc/elasticsearch/cert.pem
   # xpack.security.http.ssl.certificate_authorities: [ "/etc/elasticsearch/ca.pem" ]
-
-  xpack.monitoring.enabled: true
-  xpack.monitoring.collection.enabled: true
