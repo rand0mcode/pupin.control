@@ -7,11 +7,11 @@ elasticsearch::config:
   cluster.name: 'TestCluster'
   http.port: 9200
   network.host: "%{facts.networking.fqdn}"
-  node.name: "%{facts.networking.fqdn}"
+  node.name: "%{facts.networking.fqdn}" # fqdn is internal interface so it binds also only to that interface
   action.destructive_requires_name: true
 
   discovery.seed_hosts:
-    - localhost
+    - "%{facts.networking.fqdn}"
 
   xpack.security.enabled: false
   xpack.security.transport.ssl.enabled: true
