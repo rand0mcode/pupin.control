@@ -13,6 +13,9 @@ elasticsearch::config:
   discovery.seed_hosts:
     - "%{facts.networking.fqdn}"
 
+  cluster.initial_master_nodes:
+    - "%{facts.networking.fqdn}"
+
   xpack.security.enabled: false
   xpack.security.transport.ssl.enabled: true
   xpack.security.transport.ssl.verification_mode: certificate
