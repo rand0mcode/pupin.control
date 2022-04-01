@@ -3,10 +3,10 @@
 #
 class profile::monitoring::elastic::search {
   firewall { '100 allow elastic access':
-    dport   => [9200, 9300],
-    proto   => 'tcp',
-    iniface => 'ens10',
-    action  => 'accept',
+    dport  => [9200, 9300],
+    proto  => 'tcp',
+    action => 'accept',
+    # iniface => 'ens10',
   }
 
   contain elastic_stack::repo
