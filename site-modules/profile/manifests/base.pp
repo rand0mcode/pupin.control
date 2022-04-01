@@ -13,16 +13,10 @@ class profile::base (
   # remove own hostname from /etc/hosts
   # terraform / cloud providers set this often to 127.0.0.1 / ::1 which can be confusing
   # will need two runs if ipv4 and ipv6 is delcared seperatly
-  host { 'ipv4 localhost':
-    ensure => absent,
-    name   => $facts['networking']['fqdn'],
-    ip     => '127.0.0.1',
-  }
-
-  host { 'ipv6 localhost':
-    ensure => absent,
-    name   => $facts['networking']['fqdn'],
-    ip     => '::1',
+  host { $facts['networking']['fqdn']:
+    ensure       => absent,
+    ip           => '127.0.0.1',
+    host_aliases => '::1',
   }
 
   # manage puppet agent
