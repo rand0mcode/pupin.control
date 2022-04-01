@@ -12,3 +12,6 @@ profile::add::packages:
     ensure: latest
   vim:
     ensure: latest
+  htop:
+    ensure: latest
+    require: Class['epel']
