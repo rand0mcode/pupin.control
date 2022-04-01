@@ -4,26 +4,20 @@
 class profile::base (
   Boolean $enable_prometheus = false,
 ){
-  # install locale package
-  # on macos the locale is transfered over the ssh connection which can be confusing
-  package { 'glibc-langpack-de':
-    ensure => 'installed'
-  }
+  # first install epel repo
+  if $facts['os']['family'] == 'RedHat' { include epel }
 
-  package { 'dnf-plugins-core':
-    ensure => 'installed'
-  }
+  # add additional packages, files, ...
+  contain profile::add
 
   # remove own hostname from /etc/hosts
   # terraform / cloud providers set this often to 127.0.0.1 / ::1 which can be confusing
-  # will ne two runs if ipv4 and ipv6 is delcared seperatly
-  host { $facts['networking']['fqdn']:
-    ensure => absent,
-  }
+  # will need two runs if ipv4 and ipv6 is delcared seperatly
+  host { $facts['networking']['fqdn']: ensure => absent }
 
-  if $facts['os']['family'] == 'RedHat' { include epel }
-
+  # manage puppet agent
   include profile::puppet::agent
 
+  # manage prometheus node exporter + nginx reverse proxy
   if $enable_prometheus { include profile::monitoring::prometheus::node_exporter }
 }

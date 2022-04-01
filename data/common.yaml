@@ -1,2 +1,14 @@
 ---
-message: "This node is using common data"
+lookup_options:
+  profile::add::packages:
+    merge: deep
+  profile::add::files:
+    merge: deep
+
+profile::add::packages:
+  glibc-langpack-de:
+    ensure: latest
+  dnf-plugins-core:
+    ensure: latest
+  vim:
+    ensure: latest

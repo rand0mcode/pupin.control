@@ -33,10 +33,4 @@ node default {
   }
 
   include lookup('additional_classes', Array[String[1]], 'unique', [])
-
-  lookup('additional_files', Hash, 'hash', {}).each |String $file_name, Hash $file_data| {
-    file { $file_name:
-      * => $file_data
-    }
-  }
 }
