@@ -12,9 +12,13 @@ elasticsearch::config:
 
   discovery.seed_hosts:
     - "%{facts.networking.fqdn}"
+    - 'elastic02.priv.rw.betadots.training'
+    - 'elastic03.priv.rw.betadots.training'
 
   cluster.initial_master_nodes:
     - "%{facts.networking.fqdn}"
+    - 'elastic02.priv.rw.betadots.training'
+    - 'elastic03.priv.rw.betadots.training'
 
   xpack.security.enabled: false
   xpack.security.transport.ssl.enabled: true
