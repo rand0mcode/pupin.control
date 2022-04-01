@@ -14,4 +14,4 @@ profile::add::packages:
     ensure: latest
   htop:
     ensure: latest
-    require: Class['epel']
+    require: Class[epel]
