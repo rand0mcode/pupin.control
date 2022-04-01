@@ -11,12 +11,12 @@ elasticsearch::config:
   action.destructive_requires_name: true
 
   discovery.seed_hosts:
-    - "%{facts.networking.fqdn}"
+    - 'elastic01.priv.rw.betadots.training'
     - 'elastic02.priv.rw.betadots.training'
     - 'elastic03.priv.rw.betadots.training'
 
   cluster.initial_master_nodes:
-    - "%{facts.networking.fqdn}"
+    - 'elastic01.priv.rw.betadots.training'
     - 'elastic02.priv.rw.betadots.training'
     - 'elastic03.priv.rw.betadots.training'
 
