@@ -3,11 +3,12 @@ forge 'https://forge.puppet.com'
 # Modules from the Puppet Forge
 
 # core infrastructure
-mod 'puppet-r10k',           :latest
-mod 'puppetlabs-firewall',   :latest
-mod 'puppetlabs-git',        :latest
-mod 'puppetlabs-postgresql', :latest
-mod 'puppetlabs-puppetdb',   :latest
+mod 'puppet-r10k',             :latest
+mod 'puppetlabs-firewall',     :latest
+mod 'puppetlabs-git',          :latest
+mod 'puppetlabs-postgresql',   :latest
+mod 'puppetlabs-puppet_agent', :latest
+mod 'puppetlabs-puppetdb',     :latest
 
 # core puppet
 mod 'puppet-archive',        :latest
