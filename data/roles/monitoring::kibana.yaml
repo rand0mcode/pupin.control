@@ -4,13 +4,9 @@ kibana::ensure: '8.1.1'
 
 kibana::config:
   elasticsearch.username: 'kibana'
-  elasticsearch.password: 'BRh6tdhqHYkWqf14RauD'
+  elasticsearch.password: 'ich_bin_ein_password'
   elasticsearch.ssl.certificateAuthorities: '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
   elasticsearch.hosts:
     - "https://elastic01.%{facts.domain}:9200"
     - "https://elastic02.%{facts.domain}:9200"
     - "https://elastic03.%{facts.domain}:9200"
-
-  # server.port: 5601
-  # server.host: 'localhost'
-  # server.publicBaseUrl: 'https://kibana.pub.rw.betadots.training'

@@ -3,11 +3,6 @@ elastic_stack::repo::version: 8
 elasticsearch::version: '8.1.1'
 elasticsearch::restart_on_change: true
 
-# elasticsearch::ssl: true
-# elasticsearch::ca_certificate: /etc/elasticsearch/certs/puppet.ca.pem
-# elasticsearch::certificate: /etc/elasticsearch/certs/puppet.cert.pem
-# elasticsearch::private_key: /etc/elasticsearch/certs/puppet.key.pem
-
 elasticsearch::config:
   cluster.name: 'TestCluster'
   http.port: 9200
@@ -36,19 +31,3 @@ elasticsearch::config:
   xpack.security.http.ssl.key: /etc/elasticsearch/certs/puppet.key.pem
   xpack.security.http.ssl.certificate: /etc/elasticsearch/certs/puppet.cert.pem
   xpack.security.http.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/puppet.ca.pem" ]
-
-# use only _after_ stack setup
-
-# profile::monitoring::elastic::search::roles:
-#   myrole:
-#     privileges:
-#       cluster: ['all']
-#       indices:
-#         - names: ['*']
-#           privileges: ['all']
-
-# profile::monitoring::elastic::search::users:
-#   robert:
-#     password: waffen
-#     roles:
-#       - 'myrole'
