@@ -35,6 +35,8 @@ mod 'puppet-elastic_stack',  :latest
 mod 'puppet-kibana',         :latest
 mod 'puppet-elasticsearch',  :latest
 mod 'richardc-datacat',      :latest # elastic dependencies
+mod 'pcfens-filebeat',       :latest
 
 # stuff
 mod 'dalen-trycatch',         :latest
+mod 'pcfens-ca_cert',         :latest

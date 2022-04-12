@@ -4,6 +4,8 @@ lookup_options:
     merge: deep
   profile::add::files:
     merge: deep
+  filebeat::inputs:
+    merge: deep
 
 profile::add::packages:
   glibc-langpack-de:

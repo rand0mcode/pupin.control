@@ -1,0 +1,29 @@
+---
+filebeat::major_version: '8'
+filebeat::manage_repo: false
+
+filebeat::outputs:
+  logstash:
+    hosts:
+      - "elastic01.priv.rw.betadots.training:5044"
+      - "elastic02.priv.rw.betadots.training:5044"
+      - "elastic03.priv.rw.betadots.training:5044"
+
+filebeat::inputs:
+  system:
+    paths:
+      - /var/log/messages
+      - /var/log/dmesg
+      - /var/log/secure
+      - /var/log/cron
+      - /var/log/maillog
+      - /var/log/*.log
+      - /var/log/sssd/*.log
+      - /var/log/tuned/tuned.log
+    tags:
+      - system
+  audit:
+    paths:
+      - /var/log/audit/audit.log
+    tags:
+      - audit

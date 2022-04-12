@@ -1,2 +1,9 @@
 ---
 puppetdb::postgres_version: '14'
+
+filebeat::inputs:
+  puppet:
+    paths:
+      - /var/log/puppetlabs/*/*.log
+    tags:
+      - puppetdb

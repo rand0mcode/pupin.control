@@ -6,3 +6,10 @@ profile::puppet::compiler::r10k_purge:
   - 'deployment'
   - 'environment'
   - 'puppetfile'
+
+filebeat::inputs:
+  puppet:
+    paths:
+      - /var/log/puppetlabs/*/*.log
+    tags:
+      - puppetserver
