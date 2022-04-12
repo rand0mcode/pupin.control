@@ -13,4 +13,3 @@ kibana::config:
   server.port: 5601
   server.host: 'localhost'
   server.publicBaseUrl: 'https://kibana.pub.rw.betadots.training'
-  logging.quiet: true
