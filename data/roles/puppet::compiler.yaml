@@ -13,3 +13,5 @@ filebeat::inputs:
       - /var/log/puppetlabs/*/*.log
     tags:
       - puppetserver
+
+profile::base::enable_filebeat: true
