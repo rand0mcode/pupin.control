@@ -31,3 +31,11 @@ elasticsearch::config:
   xpack.security.http.ssl.key: /etc/elasticsearch/certs/puppet.key.pem
   xpack.security.http.ssl.certificate: /etc/elasticsearch/certs/puppet.cert.pem
   xpack.security.http.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/puppet.ca.pem" ]
+
+
+# use only _after_ stack setup
+profile::monitoring::elastic::search::users:
+  robert:
+    password: waffen
+    roles:
+      - 'superuser'
