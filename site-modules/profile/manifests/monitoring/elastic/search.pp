@@ -43,7 +43,7 @@ class profile::monitoring::elastic::search (
   }
 
   $roles.each |String $role, Hash $settings| {
-    elasticsearch::role { $user:
+    elasticsearch::role { $role:
       * => $settings
     }
   }
