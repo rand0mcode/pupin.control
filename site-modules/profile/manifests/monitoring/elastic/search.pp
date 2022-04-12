@@ -3,6 +3,7 @@
 #
 class profile::monitoring::elastic::search (
   Hash $users = {},
+  Hash $roles = {},
 ){
   firewall { '100 allow elastic access':
     dport   => [9200, 9300],
@@ -39,6 +40,12 @@ class profile::monitoring::elastic::search (
     mode   => '0400',
     source => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['networking']['fqdn']}.pem",
     before => Service['elasticsearch'],
+  }
+
+  $roles.each |String $role, Hash $settings| {
+    elasticsearch::role { $user:
+      * => $settings
+    }
   }
 
   $users.each |String $user, Hash $settings| {
