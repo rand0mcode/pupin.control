@@ -5,9 +5,9 @@ filebeat::manage_repo: false
 filebeat::outputs:
   elasticsearch:
     hosts:
-      - "elastic01.priv.rw.betadots.training:9200"
-      - "elastic02.priv.rw.betadots.training:9200"
-      - "elastic03.priv.rw.betadots.training:9200"
+      - "https://elastic01.priv.rw.betadots.training:9200"
+      - "https://elastic02.priv.rw.betadots.training:9200"
+      - "https://elastic03.priv.rw.betadots.training:9200"
     loadbalance: true
     cas:
       - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
