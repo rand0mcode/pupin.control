@@ -9,6 +9,8 @@ filebeat::outputs:
       - "https://elastic02.priv.rw.betadots.training:9200"
       - "https://elastic03.priv.rw.betadots.training:9200"
     loadbalance: true
+    username: elastic
+    password: 'tp*Rfr5YGSM6CVlc0OiE'
     cas:
       - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
 
