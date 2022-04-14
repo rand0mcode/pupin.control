@@ -3,27 +3,21 @@
 #
 class profile::base (
   Boolean $enable_prometheus = false,
+  Boolean $enable_filebeat   = false,
 ){
-  # install locale package
-  # on macos the locale is transfered over the ssh connection which can be confusing
-  package { 'glibc-langpack-de':
-    ensure => 'installed'
+  # trust puppetca systemwide
+  ca_cert::ca { 'PuppetCA':
+    ensure => 'trusted',
+    source => 'file:///etc/puppetlabs/puppet/ssl/certs/ca.pem',
   }
 
-  package { 'dnf-plugins-core':
-    ensure => 'installed'
-  }
-
-  # remove own hostname from /etc/hosts
-  # terraform / cloud providers set this often to 127.0.0.1 / ::1 which can be confusing
-  # will ne two runs if ipv4 and ipv6 is delcared seperatly
-  host { $facts['networking']['fqdn']:
-    ensure => absent,
-  }
-
+  # first install epel repo
   if $facts['os']['family'] == 'RedHat' { include epel }
 
+  include profile::add
   include profile::puppet::agent
 
+  # manage prometheus node exporter + nginx reverse proxy
   if $enable_prometheus { include profile::monitoring::prometheus::node_exporter }
+  if $enable_filebeat   { include profile::monitoring::elastic::filebeat }
 }

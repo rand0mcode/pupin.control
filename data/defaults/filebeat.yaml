@@ -1,0 +1,34 @@
+---
+filebeat::major_version: '8'
+filebeat::manage_repo: false
+
+filebeat::outputs:
+  elasticsearch:
+    hosts:
+      - "https://elastic01.priv.rw.betadots.training:9200"
+      - "https://elastic02.priv.rw.betadots.training:9200"
+      - "https://elastic03.priv.rw.betadots.training:9200"
+    loadbalance: true
+    username: elastic
+    password: 'tp*Rfr5YGSM6CVlc0OiE'
+    cas:
+      - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
+
+filebeat::inputs:
+  system:
+    paths:
+      - /var/log/messages
+      - /var/log/dmesg
+      - /var/log/secure
+      - /var/log/cron
+      - /var/log/maillog
+      - /var/log/*.log
+      - /var/log/sssd/*.log
+      - /var/log/tuned/tuned.log
+    tags:
+      - system
+  audit:
+    paths:
+      - /var/log/audit/audit.log
+    tags:
+      - audit
