@@ -31,9 +31,9 @@ mod 'KyleAnderson-consul',   :latest
 mod 'puppet-prometheus',     :latest
 
 # elastic
-mod 'puppet-elastic_stack',  '6.3.2'
-mod 'puppet-kibana',         '6.3.1'
-mod 'puppet-elasticsearch',  '6.4.0'
+mod 'elastic-elastic_stack',  '6.3.2'
+mod 'elastic-kibana',         '6.3.1'
+mod 'elastic-elasticsearch',  '6.4.0'
 mod 'richardc-datacat',      :latest # elastic dependencies
 mod 'pcfens-filebeat',       :git => 'https://github.com/rwaffen/puppet-filebeat', :commit => '472b17c'
 
