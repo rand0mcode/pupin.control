@@ -14,4 +14,4 @@ filebeat::inputs:
     tags:
       - puppetserver
 
-profile::base::enable_filebeat: true
+profile::base::enable_filebeat: false
