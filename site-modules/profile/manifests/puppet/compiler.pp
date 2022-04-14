@@ -15,7 +15,7 @@ class profile::puppet::compiler (
     deploy_settings => {
       purge_levels    => $r10k_purge,
       generate_types  => true,
-      purge_allowlist => '.resource_types',
+      purge_allowlist => ['.resource_types'],
     }
   }
 
