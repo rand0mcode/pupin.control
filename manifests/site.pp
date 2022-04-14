@@ -28,7 +28,7 @@ node default {
   try() || {
     include "role::${trusted['extensions']['pp_role']}"
   }.catch |$exception| {
-    notify { 'role not found, using default role':}
+    notify { "role not found, using default role - your role is: ${trusted['extensions']['pp_role']}": }
     include 'role::default'
   }
 

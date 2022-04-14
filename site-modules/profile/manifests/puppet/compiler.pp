@@ -13,8 +13,9 @@ class profile::puppet::compiler (
     remote          => $control_repo,
     version         => $r10k_version,
     deploy_settings => {
-      purge_levels   => $r10k_purge,
-      generate_types => true,
+      purge_levels    => $r10k_purge,
+      generate_types  => true,
+      purge_allowlist => '.resource_types',
     }
   }
 
