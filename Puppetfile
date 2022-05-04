@@ -31,12 +31,13 @@ mod 'KyleAnderson-consul',   :latest
 mod 'puppet-prometheus',     :latest
 
 # elastic
-mod 'elastic-elastic_stack',  '6.3.2'
-mod 'elastic-kibana',         '6.3.1'
-mod 'elastic-elasticsearch',  '6.4.0'
+mod 'puppet-elastic_stack',  :latest
+mod 'puppet-kibana',         :latest
+mod 'puppet-elasticsearch',  :latest
 mod 'richardc-datacat',      :latest # elastic dependencies
-mod 'pcfens-filebeat',       :git => 'https://github.com/rwaffen/puppet-filebeat', :commit => '472b17c'
+mod 'pcfens-filebeat',       :git => 'https://github.com/rwaffen/puppet-filebeat', :commit => 'bd2022b'
 
 # stuff
 mod 'dalen-trycatch',         :latest
 mod 'pcfens-ca_cert',         :latest
+mod 'puppet-yum',             :latest

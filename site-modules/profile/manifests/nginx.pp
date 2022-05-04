@@ -2,7 +2,7 @@
 #
 #
 class profile::nginx {
-  include nginx
+  contain nginx
 
   # copy puppet certs into nginx dir to use them for vhosts
   file { "/etc/nginx/puppet_${trusted['certname']}.key":
