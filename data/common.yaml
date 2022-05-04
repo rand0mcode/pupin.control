@@ -17,3 +17,6 @@ profile::add::packages:
   htop:
     ensure: latest
     require: Class[Epel]
+
+yum::config_options:
+  ip_resolve: 4 # download packages via IPv4
