@@ -12,7 +12,7 @@ class profile::base (
   }
 
   if $facts['os']['family'] == 'RedHat' {
-    include epel
+    include profile::epel
     include profile::yum
   }
 
