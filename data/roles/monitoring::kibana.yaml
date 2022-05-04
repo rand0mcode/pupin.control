@@ -1,5 +1,4 @@
 ---
-elastic_stack::repo::version: 8
 kibana::ensure: '8.2.0'
 
 kibana::config:
