@@ -3,10 +3,10 @@ elastic_stack::repo::version: 8
 kibana::ensure: '8.1.1'
 
 kibana::config:
-  elasticsearch.username: 'kibana'
-  elasticsearch.password: 'ich_bin_ein_password'
-  elasticsearch.ssl.certificateAuthorities: '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
+  # elasticsearch.username: 'kibana'
+  # elasticsearch.password: 'ich_bin_ein_password'
+  # elasticsearch.ssl.certificateAuthorities: '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
   elasticsearch.hosts:
-    - "https://elastic01.%{facts.domain}:9200"
-    - "https://elastic02.%{facts.domain}:9200"
-    - "https://elastic03.%{facts.domain}:9200"
+    - "http://elastic01.%{facts.domain}:9200"
+    - "http://elastic02.%{facts.domain}:9200"
+    - "http://elastic03.%{facts.domain}:9200"

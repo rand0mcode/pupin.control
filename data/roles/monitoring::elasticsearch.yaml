@@ -20,14 +20,14 @@ elasticsearch::config:
     - "elastic02.%{facts.domain}"
     - "elastic03.%{facts.domain}"
 
-  xpack.security.enabled: true
-  xpack.security.transport.ssl.enabled: true
-  xpack.security.transport.ssl.verification_mode: certificate
-  xpack.security.transport.ssl.key: /etc/elasticsearch/certs/puppet.key.pem
-  xpack.security.transport.ssl.certificate: /etc/elasticsearch/certs/puppet.cert.pem
-  xpack.security.transport.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/puppet.ca.pem" ]
+  xpack.security.enabled: false
+  xpack.security.transport.ssl.enabled: false
+  # xpack.security.transport.ssl.verification_mode: certificate
+  # xpack.security.transport.ssl.key: /etc/elasticsearch/certs/puppet.key.pem
+  # xpack.security.transport.ssl.certificate: /etc/elasticsearch/certs/puppet.cert.pem
+  # xpack.security.transport.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/puppet.ca.pem" ]
 
-  xpack.security.http.ssl.enabled: true
-  xpack.security.http.ssl.key: /etc/elasticsearch/certs/puppet.key.pem
-  xpack.security.http.ssl.certificate: /etc/elasticsearch/certs/puppet.cert.pem
-  xpack.security.http.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/puppet.ca.pem" ]
+  xpack.security.http.ssl.enabled: false
+  # xpack.security.http.ssl.key: /etc/elasticsearch/certs/puppet.key.pem
+  # xpack.security.http.ssl.certificate: /etc/elasticsearch/certs/puppet.cert.pem
+  # xpack.security.http.ssl.certificate_authorities: [ "/etc/elasticsearch/certs/puppet.ca.pem" ]
