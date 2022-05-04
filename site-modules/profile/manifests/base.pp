@@ -13,10 +13,7 @@ class profile::base (
 
   if $facts['os']['family'] == 'RedHat' {
     include epel
-    contain profile::yum
-
-    Class['Profile::Yum']
-    -> Package <| |>
+    include profile::yum
   }
 
   include profile::add
