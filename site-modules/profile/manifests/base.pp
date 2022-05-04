@@ -14,6 +14,9 @@ class profile::base (
   if $facts['os']['family'] == 'RedHat' {
     include epel
     include profile::yum
+
+    Class['Profile::Yum']
+    -> Package <| |>
   }
 
   include profile::add
