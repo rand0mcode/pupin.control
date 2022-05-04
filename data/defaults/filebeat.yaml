@@ -9,10 +9,10 @@ filebeat::outputs:
       - "http://elastic02.priv.rw.betadots.training:9200"
       - "http://elastic03.priv.rw.betadots.training:9200"
     loadbalance: true
-    # username: elastic
-    # password: 'tp*Rfr5YGSM6CVlc0OiE'
-    cas:
-      - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
+    # username: 'filbeat_system'
+    # password: 'ich_bin_ein_password'
+    # cas:
+    #   - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
 
 filebeat::inputs:
   system:
