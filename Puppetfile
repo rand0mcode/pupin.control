@@ -40,3 +40,4 @@ mod 'pcfens-filebeat',       :git => 'https://github.com/rwaffen/puppet-filebeat
 # stuff
 mod 'dalen-trycatch',         :latest
 mod 'pcfens-ca_cert',         :latest
+mod 'puppet-yum',             :latest

@@ -11,8 +11,10 @@ class profile::base (
     source => 'file:///etc/puppetlabs/puppet/ssl/certs/ca.pem',
   }
 
-  # first install epel repo
-  if $facts['os']['family'] == 'RedHat' { include epel }
+  if $facts['os']['family'] == 'RedHat' {
+    include epel
+    include profile::yum
+  }
 
   include profile::add
   include profile::puppet::agent
