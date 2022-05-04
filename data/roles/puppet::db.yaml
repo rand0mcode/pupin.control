@@ -5,6 +5,7 @@ profile::base::enable_filebeat: true
 
 filebeat::inputs:
   puppet:
+    type: 'log'
     paths:
       - /var/log/puppetlabs/*/*.log
     tags:

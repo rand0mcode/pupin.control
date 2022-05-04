@@ -16,6 +16,7 @@ filebeat::outputs:
 
 filebeat::inputs:
   system:
+    type: 'log'
     paths:
       - /var/log/messages
       - /var/log/dmesg
@@ -28,6 +29,7 @@ filebeat::inputs:
     tags:
       - system
   audit:
+    type: 'log'
     paths:
       - /var/log/audit/audit.log
     tags:
