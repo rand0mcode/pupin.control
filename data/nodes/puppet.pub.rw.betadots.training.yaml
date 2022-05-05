@@ -1,0 +1,21 @@
+---
+profile::base::enable_heartbeat: true
+
+heartbeat::monitors:
+  - type: 'icmp'
+    schedule: '@every 10s'
+    hosts:
+      - 'puppet.pub.rw.betadots.training'
+      - 'puppetdb.pub.rw.betadots.training'
+      - 'puppetca.pub.rw.betadots.training'
+      - 'kibana.pub.rw.betadots.training'
+      - 'elastic01.pub.rw.betadots.training'
+      - 'elastic02.pub.rw.betadots.training'
+      - 'elastic03.pub.rw.betadots.training'
+
+heartbeat::outputs:
+  elasticsearch:
+    hosts:
+      - "http://elastic01.priv.rw.betadots.training:9200"
+      - "http://elastic02.priv.rw.betadots.training:9200"
+      - "http://elastic03.priv.rw.betadots.training:9200"

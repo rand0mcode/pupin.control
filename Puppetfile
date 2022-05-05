@@ -37,7 +37,7 @@ mod 'puppet-elasticsearch',   :latest
 mod 'richardc-datacat',       :latest # elastic dependencies
 mod 'pcfens-filebeat',        :git => 'https://github.com/rwaffen/puppet-filebeat',            :commit => 'bd2022b'
 mod 'coreyh-metricbeat',      :git => 'https://github.com/rwaffen/puppet-metricbeat',          :commit => '3e82e12'
-# mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git', :commit => '96c23af'
+mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git', :commit => '96c23af'
 
 # stuff
 mod 'dalen-trycatch',         :latest
