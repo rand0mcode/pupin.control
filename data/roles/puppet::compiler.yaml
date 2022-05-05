@@ -7,8 +7,6 @@ profile::puppet::compiler::r10k_purge:
   - 'environment'
   - 'puppetfile'
 
-profile::base::enable_filebeat: true
-
 filebeat::inputs:
   puppet:
     paths:
