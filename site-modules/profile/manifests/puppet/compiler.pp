@@ -21,7 +21,7 @@ class profile::puppet::compiler (
 
   cron { 'update_puppet_envs':
     ensure  => present,
-    command => '/opt/puppetlabs/puppet/bin/r10k deploy environment -v > /var/log/puppetlabs/last_r10k_cron_run.log 2>&1',
+    command => '/opt/puppetlabs/puppet/bin/r10k deploy environment -m -v > /var/log/puppetlabs/last_r10k_cron_run.log 2>&1',
     minute  => '*/10',
   }
 
