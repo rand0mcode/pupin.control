@@ -36,6 +36,7 @@ mod 'puppet-kibana',         :latest
 mod 'puppet-elasticsearch',  :latest
 mod 'richardc-datacat',      :latest # elastic dependencies
 mod 'pcfens-filebeat',       :git => 'https://github.com/rwaffen/puppet-filebeat', :commit => 'bd2022b'
+mod 'coreyh-metricbeat',     :latest
 
 # stuff
 mod 'dalen-trycatch',         :latest

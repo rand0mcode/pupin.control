@@ -21,5 +21,6 @@ class profile::base (
   if $enable_filebeat   {
     include profile::monitoring::elastic::repo
     include profile::monitoring::elastic::filebeat
+    include profile::monitoring::elastic::metricbeat
   }
 }
