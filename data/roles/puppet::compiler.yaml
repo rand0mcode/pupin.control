@@ -10,6 +10,7 @@ profile::puppet::compiler::r10k_purge:
 filebeat::inputs:
   puppet:
     paths:
-      - /var/log/puppetlabs/*/*.log
+      - '/var/log/puppetlabs/*/*.log'
+    pipeline: 'puppetserver_log'
     tags:
-      - puppetserver
+      - 'puppetserver'
