@@ -1,8 +1,6 @@
 ---
 puppetdb::postgres_version: '14'
 
-profile::base::enable_filebeat: true
-
 filebeat::inputs:
   puppet:
     paths:

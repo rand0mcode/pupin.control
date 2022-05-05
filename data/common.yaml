@@ -17,3 +17,6 @@ profile::add::packages:
   htop:
     ensure: latest
     require: Class[Epel]
+
+profile::base::enable_metricbeat: true
+profile::base::enable_filebeat: true

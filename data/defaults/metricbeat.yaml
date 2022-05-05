@@ -1,0 +1,34 @@
+---
+metricbeat::major_version: '8'
+metricbeat::manage_repo: false
+metricbeat::beat_name: "%{facts.networking.fqdn}"
+metricbeat::outputs:
+  elasticsearch:
+    hosts:
+      - "http://elastic01.priv.rw.betadots.training:9200"
+      - "http://elastic02.priv.rw.betadots.training:9200"
+      - "http://elastic03.priv.rw.betadots.training:9200"
+    # username: 'filbeat_system'
+    # password: 'ich_bin_ein_password'
+    # cas:
+    #   - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
+
+
+metricbeat::modules:
+  - module: system
+    metricsets:
+      - cpu             # CPU usage
+      - load            # CPU load averages
+      - memory          # Memory usage
+      - network         # Network IO
+      - process         # Per process metrics
+      - process_summary # Process summary
+      - uptime          # System Uptime
+      - socket_summary  # Socket summary
+      - core           # Per CPU core usage
+      - diskio         # Disk IO
+      - filesystem     # File system usage for each mountpoint
+      - fsstat         # File system summary metrics
+      #- raid           # Raid
+      - socket         # Sockets and connection info (linux only)
+      - service        # systemd service information

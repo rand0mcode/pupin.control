@@ -1,7 +1,7 @@
 ---
 filebeat::major_version: '8'
 filebeat::manage_repo: false
-
+filebeat::beat_name: "%{facts.networking.fqdn}"
 filebeat::outputs:
   elasticsearch:
     hosts:
