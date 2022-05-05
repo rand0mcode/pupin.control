@@ -2,6 +2,6 @@
 #
 #
 class profile::monitoring::elastic::kibana {
-  contain elastic_stack::repo
+  contain nginx
   contain kibana
 }

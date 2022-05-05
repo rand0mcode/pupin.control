@@ -1,5 +1,4 @@
 ---
-elastic_stack::repo::version: 8
 elasticsearch::version: '8.2.0'
 elasticsearch::restart_on_change: true
 
