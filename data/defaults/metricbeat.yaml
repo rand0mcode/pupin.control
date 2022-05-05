@@ -1,7 +1,7 @@
 ---
 metricbeat::major_version: '8'
 metricbeat::manage_repo: false
-
+metricbeat::beat_name: "%{facts.networking.fqdn}"
 metricbeat::outputs:
   elasticsearch:
     hosts:
