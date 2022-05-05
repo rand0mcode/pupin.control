@@ -1,6 +1,7 @@
 ---
 profile::base::enable_heartbeat: true
 
+heartbeat::manage_repo: false
 heartbeat::monitors:
   - type: 'icmp'
     schedule: '@every 10s'
