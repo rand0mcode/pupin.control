@@ -32,3 +32,7 @@ filebeat::inputs:
       - /var/log/audit/audit.log
     tags:
       - audit
+
+filebeat::logging:
+  level: 'error'
+  metrics.enabled: false
