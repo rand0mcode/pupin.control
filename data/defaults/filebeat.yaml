@@ -29,8 +29,8 @@ filebeat::outputs:
 #       - system
 
 filebeat::modules:
-  - auditd
-  - system
+  - module: auditd
+  - module: system
 
 filebeat::logging:
   level: 'error'
