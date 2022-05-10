@@ -1,0 +1,28 @@
+---
+auditbeat::major_version: '8'
+auditbeat::manage_repo: false
+auditbeat::beat_name: "%{facts.networking.fqdn}"
+auditbeat::outputs:
+  elasticsearch:
+    hosts:
+      - "http://elastic01.%{facts.networking.domain}:9200"
+      - "http://elastic02.%{facts.networking.domain}:9200"
+      - "http://elastic03.%{facts.networking.domain}:9200"
+    # username: 'filbeat_system'
+    # password: 'ich_bin_ein_password'
+    # cas:
+    #   - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
+
+auditbeat::modules:
+  - module: 'file_integrity'
+    enabled: true
+    paths:
+      - '/bin'
+      - '/usr/bin'
+      - '/sbin'
+      - '/usr/sbin'
+      - '/etc'
+  - module: 'auditd'
+    enabled: true
+    audit_rules: |
+      -a always,exit -F arch=b32 -S all -F key=32bit-abi
