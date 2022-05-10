@@ -38,6 +38,7 @@ mod 'richardc-datacat',       :latest # elastic dependencies
 mod 'pcfens-filebeat',        :git => 'https://github.com/rwaffen/puppet-filebeat',            :commit => 'bd2022b'
 mod 'coreyh-metricbeat',      :git => 'https://github.com/rwaffen/puppet-metricbeat',          :commit => '3e82e12'
 mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git', :commit => '80570d4'
+mod 'norisnetwork-auditbeat', :git => 'https://github.com/rwaffen/norisnetwork-auditbeat.git', :commit => '17f63cb'
 
 # stuff
 mod 'dalen-trycatch',         :latest

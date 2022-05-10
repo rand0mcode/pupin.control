@@ -22,3 +22,4 @@ profile::add::packages:
 
 profile::base::enable_metricbeat: true
 profile::base::enable_filebeat: true
+profile::base::enable_auditbeat: true

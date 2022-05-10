@@ -6,6 +6,7 @@ class profile::base (
   Boolean $enable_filebeat   = false,
   Boolean $enable_metricbeat = false,
   Boolean $enable_heartbeat  = false,
+  Boolean $enable_auditbeat  = false,
 ){
   # trust puppetca systemwide
   ca_cert::ca { 'PuppetCA':
@@ -34,5 +35,10 @@ class profile::base (
   if $enable_heartbeat {
     include profile::monitoring::elastic::repo
     include profile::monitoring::elastic::heartbeat
+  }
+
+  if $enable_auditbeat {
+    include profile::monitoring::elastic::repo
+    include profile::monitoring::elastic::auditbeat
   }
 }
