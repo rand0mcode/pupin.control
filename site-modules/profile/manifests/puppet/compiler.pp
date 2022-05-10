@@ -2,11 +2,10 @@
 #
 #
 class profile::puppet::compiler (
-  Boolean $aio,
-  Optional[Stdlib::Host] $puppetdb_host,
   String $control_repo,
   String $r10k_version,
   Array[String[1]] $r10k_purge,
+  Optional[Stdlib::Host] $puppetdb_host = undef,
 ){
   include git
 
@@ -26,12 +25,11 @@ class profile::puppet::compiler (
     minute  => '*/10',
   }
 
-  if $aio {
+  if $puppetdb_host =~ Undef {
     class { 'puppetdb::master::config': }
   } else {
-    $valid_puppetdb_host = assert_type(Stdlib::Host, $puppetdb_host)
     class { 'puppetdb::master::config':
-      puppetdb_server => $valid_puppetdb_host,
+      puppetdb_server => $puppetdb_host,
     }
   }
 }

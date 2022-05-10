@@ -1,5 +1,4 @@
 ---
-profile::puppet::compiler::aio: false
 profile::puppet::compiler::puppetdb_host: "puppetdb.%{facts.domain}"
 profile::puppet::compiler::control_repo: 'https://github.com/rand0mcode/pupin.control.git'
 profile::puppet::compiler::r10k_version: '3.14.2'
