@@ -6,6 +6,8 @@ lookup_options:
     merge: deep
   filebeat::inputs:
     merge: deep
+  puppet_agent::config:
+    merge: deep
 
 profile::add::packages:
   glibc-langpack-de:

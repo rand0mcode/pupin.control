@@ -2,12 +2,18 @@
 #
 #
 class profile::puppet::compiler (
-  String $puppetdb_host,
   String $control_repo,
   String $r10k_version,
   Array[String[1]] $r10k_purge,
+  Optional[Stdlib::Host] $puppetdb_host = undef,
 ){
   include git
+
+  firewall { '100 allow puppet access':
+    dport  => [8140],
+    proto  => 'tcp',
+    action => 'accept',
+  }
 
   class { 'r10k':
     remote          => $control_repo,
@@ -25,7 +31,11 @@ class profile::puppet::compiler (
     minute  => '*/10',
   }
 
-  class { 'puppetdb::master::config':
-    puppetdb_server => $puppetdb_host,
+  if $puppetdb_host =~ Undef {
+    class { 'puppetdb::master::config': }
+  } else {
+    class { 'puppetdb::master::config':
+      puppetdb_server => $puppetdb_host,
+    }
   }
 }

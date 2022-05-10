@@ -10,14 +10,14 @@ elasticsearch::config:
   action.destructive_requires_name: true
 
   discovery.seed_hosts:
-    - "elastic01.%{facts.domain}"
-    - "elastic02.%{facts.domain}"
-    - "elastic03.%{facts.domain}"
+    - "elastic01.%{facts.networking.domain}"
+    - "elastic02.%{facts.networking.domain}"
+    - "elastic03.%{facts.networking.domain}"
 
   cluster.initial_master_nodes:
-    - "elastic01.%{facts.domain}"
-    - "elastic02.%{facts.domain}"
-    - "elastic03.%{facts.domain}"
+    - "elastic01.%{facts.networking.domain}"
+    - "elastic02.%{facts.networking.domain}"
+    - "elastic03.%{facts.networking.domain}"
 
   xpack.security.enabled: false
   xpack.security.transport.ssl.enabled: false

@@ -1,0 +1,22 @@
+---
+profile::puppet::compiler::control_repo: 'https://github.com/rand0mcode/pupin.control.git'
+profile::puppet::compiler::r10k_version: '3.14.2'
+profile::puppet::compiler::r10k_purge:
+  - 'deployment'
+  - 'environment'
+  - 'puppetfile'
+
+puppetdb::postgres_version: '14'
+
+filebeat::inputs:
+  puppetserver:
+    paths:
+      - '/var/log/puppetlabs/puppetserver/*.log'
+    pipeline: 'puppetserver_log'
+    tags:
+      - 'puppetserver'
+  puppetdb:
+    paths:
+      - /var/log/puppetlabs/puppetdb/*.log
+    tags:
+      - puppetdb
