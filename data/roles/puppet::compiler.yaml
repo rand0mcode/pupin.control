@@ -9,6 +9,7 @@ profile::puppet::compiler::r10k_purge:
 
 filebeat::inputs:
   puppet:
+    id: puppet_%{facts.networking.fqdn}
     paths:
       - '/var/log/puppetlabs/*/*.log'
     pipeline: 'puppetserver_log'
