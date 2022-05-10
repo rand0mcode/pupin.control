@@ -1,4 +1,5 @@
 ---
+puppet_agent::manage_repo: false
 puppet_agent::config:
   # comment in if you have an external ca
   # - { section: 'agent', setting: 'ca_server', ensure: 'present', value: 'puppetca.%{facts.networking.domain}' }
