@@ -35,7 +35,3 @@ metricbeat::modules:
       - socket_summary  # Socket summary
       - uptime          # System Uptime
       - users
-
-metricbeat::logging:
-  level: 'error'
-  metrics.enabled: false
