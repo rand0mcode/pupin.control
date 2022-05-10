@@ -27,7 +27,7 @@ filebeat::inputs:
       - /var/log/tuned/tuned.log
     tags:
       - system
-  audit:
+  audit_logs:
     paths:
       - /var/log/audit/audit.log
     tags:
