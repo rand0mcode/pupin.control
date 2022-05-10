@@ -22,7 +22,21 @@ auditbeat::modules:
       - '/sbin'
       - '/usr/sbin'
       - '/etc'
+
   - module: 'auditd'
     enabled: true
     audit_rules: |
       -a always,exit -F arch=b32 -S all -F key=32bit-abi
+
+  - module: system
+    datasets:
+      - host
+      - login
+      - package
+      - process
+      - socket
+      - user
+    period: 10s
+    state.period: 12h
+    socket.include_localhost: false
+    user.detect_password_changes: true
