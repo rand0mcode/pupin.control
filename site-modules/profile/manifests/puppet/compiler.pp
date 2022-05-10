@@ -2,7 +2,8 @@
 #
 #
 class profile::puppet::compiler (
-  String $puppetdb_host,
+  Boolean $aio,
+  Optional[Stdlib::Host] $puppetdb_host,
   String $control_repo,
   String $r10k_version,
   Array[String[1]] $r10k_purge,
@@ -25,7 +26,12 @@ class profile::puppet::compiler (
     minute  => '*/10',
   }
 
-  class { 'puppetdb::master::config':
-    puppetdb_server => $puppetdb_host,
+  if $aio {
+    class { 'puppetdb::master::config': }
+  } else {
+    $valid_puppetdb_host = assert_type(Stdlib::Host, $puppetdb_host)
+    class { 'puppetdb::master::config':
+      puppetdb_server => $valid_puppetdb_host,
+    }
   }
 }

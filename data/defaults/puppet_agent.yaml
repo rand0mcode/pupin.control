@@ -1,11 +1,12 @@
 ---
 puppet_agent::config:
-  - { section: 'agent', setting: 'ca_server', ensure: 'present', value: 'puppetca.priv.rw.betadots.training' }
+  # comment in if you have an external ca
+  # - { section: 'agent', setting: 'ca_server', ensure: 'present', value: 'puppetca.%{facts.networking.domain}' }
   - { section: 'agent', setting: 'certname', ensure: 'present', value: "%{trusted.certname}" }
   - { section: 'agent', setting: 'classfile', ensure: 'present', value: '$vardir/classes.txt' }
   - { section: 'agent', setting: 'crl_refresh_interval', ensure: 'present', value: '5m' }
   - { section: 'agent', setting: 'environment', ensure: 'present', value: "%{::environment}" }
-  - { section: 'agent', setting: 'server', ensure: 'present', value: 'puppet.priv.rw.betadots.training' }
+  - { section: 'agent', setting: 'server', ensure: 'present', value: "puppet.%{facts.networking.domain}" }
   - { section: 'agent', setting: 'splay', ensure: 'present', value: 'true' }
   - { section: 'agent', setting: 'use_cached_catalog', ensure: 'present', value: 'false' }
   - { section: 'agent', setting: 'usecacheonfailure', ensure: 'present', value: 'false' }

@@ -17,6 +17,6 @@ heartbeat::monitors:
 heartbeat::outputs:
   elasticsearch:
     hosts:
-      - "http://elastic01.priv.rw.betadots.training:9200"
-      - "http://elastic02.priv.rw.betadots.training:9200"
-      - "http://elastic03.priv.rw.betadots.training:9200"
+      - "http://elastic01.%{facts.networking.domain}:9200"
+      - "http://elastic02.%{facts.networking.domain}:9200"
+      - "http://elastic03.%{facts.networking.domain}:9200"
