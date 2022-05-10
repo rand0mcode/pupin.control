@@ -14,23 +14,24 @@ filebeat::outputs:
     # cas:
     #   - '/etc/puppetlabs/puppet/ssl/certs/ca.pem'
 
-# filebeat::inputs:
-#   system:
-#     paths:
-#       - /var/log/messages
-#       - /var/log/dmesg
-#       - /var/log/secure
-#       - /var/log/cron
-#       - /var/log/maillog
-#       - /var/log/*.log
-#       - /var/log/sssd/*.log
-#       - /var/log/tuned/tuned.log
-#     tags:
-#       - system
-
-filebeat::modules:
-  - module: auditd
-  - module: system
+filebeat::inputs:
+  system:
+    paths:
+      - /var/log/messages
+      - /var/log/dmesg
+      - /var/log/secure
+      - /var/log/cron
+      - /var/log/maillog
+      - /var/log/*.log
+      - /var/log/sssd/*.log
+      - /var/log/tuned/tuned.log
+    tags:
+      - system
+  audit_logs:
+    paths:
+      - /var/log/audit/audit.log
+    tags:
+      - audit
 
 filebeat::logging:
   level: 'error'
