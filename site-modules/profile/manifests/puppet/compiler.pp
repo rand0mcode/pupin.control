@@ -9,6 +9,12 @@ class profile::puppet::compiler (
 ){
   include git
 
+  firewall { '100 allow puppet access':
+    dport  => [8140],
+    proto  => 'tcp',
+    action => 'accept',
+  }
+
   class { 'r10k':
     remote          => $control_repo,
     version         => $r10k_version,
