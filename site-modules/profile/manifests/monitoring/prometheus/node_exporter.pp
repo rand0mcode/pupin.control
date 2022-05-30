@@ -2,7 +2,7 @@
 #
 #
 class profile::monitoring::prometheus::node_exporter (
-  String $version   = '1.3.0',
+  String $version   = '1.3.1',
   String $listen_ip = $facts['networking']['interfaces']['ens10']['ip'],
   Boolean $consul   = false
 
