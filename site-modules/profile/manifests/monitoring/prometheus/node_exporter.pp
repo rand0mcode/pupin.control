@@ -7,7 +7,11 @@ class profile::monitoring::prometheus::node_exporter (
   Boolean $consul   = false
 
 ){
-  include profile::nginx
+  firewall { '100 allow prometheus access':
+    dport  => [9100],
+    proto  => 'tcp',
+    action => 'accept',
+  }
 
   class { 'prometheus::node_exporter':
     collectors_enable => ['diskstats','filesystem','meminfo','netdev','netstat','stat','time',
@@ -16,56 +20,37 @@ class profile::monitoring::prometheus::node_exporter (
                           'cpufreq', 'cpu', 'conntrack', 'arp'],
     extra_options     => '--web.listen-address 127.0.0.1:9100',
     version           => $version,
-  }
-
-  if $facts['os']['selinux']['enabled'] {
-    selboolean { 'httpd_can_network_connect':
-      value      => 'on',
-      persistent => true,
-      before     => Nginx::Resource::Server['node_exporter'],
-    }
-
-    selboolean { 'httpd_can_network_relay':
-      value      => 'on',
-      persistent => true,
-      before     => Nginx::Resource::Server['node_exporter'],
-    }
-
-    selboolean { 'httpd_setrlimit':
-      value      => 'on',
-      persistent => true,
-      before     => Nginx::Resource::Server['node_exporter'],
-    }
-
-    selinux::port { 'allow-nginx-9100':
-      ensure   => 'present',
-      seltype  => 'http_port_t',
-      protocol => 'tcp',
-      port     => 9100,
-      before   => Nginx::Resource::Server['node_exporter'],
+    tls_server_config => {
+      cert_file        => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
+      key_file         => "/etc/node_exporter/puppet_${trusted['certname']}.key",
+      client_ca_file   => '/etc/node_exporter/puppet_ca.pem',
+      client_auth_type => 'RequireAndVerifyClientCert'
     }
   }
 
-  nginx::resource::server { 'node_exporter':
-    ipv6_enable       => false,
-    listen_ip         => $listen_ip,
-    listen_port       => 9100,
-    proxy             => 'http://127.0.0.1:9100',
-    server_name       => [$trusted['certname']],
-    ssl               => true,
-    ssl_cert          => "/etc/nginx/puppet_${trusted['certname']}.crt",
-    ssl_client_cert   => '/etc/nginx/puppet_ca.pem',
-    ssl_crl           => '/etc/nginx/puppet_crl.pem',
-    ssl_key           => "/etc/nginx/puppet_${trusted['certname']}.key",
-    ssl_port          => 9100,
-    ssl_protocols     => 'TLSv1.2',
-    ssl_verify_client => 'on',
+  # copy puppet certs into prometheus dir to use them for querying with client_cert
+  file { "/etc/node_exporter/puppet_${trusted['certname']}.key":
+    ensure  => 'file',
+    mode    => '0400',
+    source  => "/etc/puppetlabs/puppet/ssl/private_keys/${trusted['certname']}.pem",
+    before  => Prometheus::Daemon['node_exporter'],
+    require => Class['prometheus::node_exporter'],
   }
 
-  firewall { '100 allow prometheus access':
-    dport  => [9100],
-    proto  => 'tcp',
-    action => 'accept',
+  file { "/etc/node_exporter/puppet_${trusted['certname']}.crt":
+    ensure  => 'file',
+    mode    => '0400',
+    source  => "/etc/puppetlabs/puppet/ssl/certs/${trusted['certname']}.pem",
+    before  => Prometheus::Daemon['node_exporter'],
+    require => Class['prometheus::node_exporter'],
+  }
+
+  file { '/etc/node_exporter/puppet_ca.pem':
+    ensure  => 'file',
+    mode    => '0400',
+    source  => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+    before  => Prometheus::Daemon['node_exporter'],
+    require => Class['prometheus::node_exporter'],
   }
 
   if $consul {
@@ -85,4 +70,5 @@ class profile::monitoring::prometheus::node_exporter (
       tags    => ['node-exporter'],
     }
   }
+
 }
