@@ -24,35 +24,39 @@ class profile::monitoring::prometheus::node_exporter (
     tls_cert_file         => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
     tls_key_file          => "/etc/node_exporter/puppet_${trusted['certname']}.key",
     tls_client_ca_file    => '/etc/node_exporter/puppet_ca.pem',
-    tls_client_auth_type  => 'RequireAndVerifyClientCert'
+    tls_client_auth_type  => 'RequireAndVerifyClientCert',
+    manage_service        => false,
+  }
+
+  file { '/etc/node_exporter':
+    ensure => directory,
+    group  => 'node-exporter',
   }
 
   # copy puppet certs into prometheus dir to use them for querying with client_cert
   file { "/etc/node_exporter/puppet_${trusted['certname']}.key":
     ensure => 'file',
-    mode   => '0400',
-    owner  => 'node-exporter',
+    mode   => '0440',
     group  => 'node-exporter',
     source => "/etc/puppetlabs/puppet/ssl/private_keys/${trusted['certname']}.pem",
-    before => Prometheus::Daemon['node_exporter'],
   }
 
   file { "/etc/node_exporter/puppet_${trusted['certname']}.crt":
     ensure => 'file',
-    mode   => '0400',
-    owner  => 'node-exporter',
+    mode   => '0440',
     group  => 'node-exporter',
     source => "/etc/puppetlabs/puppet/ssl/certs/${trusted['certname']}.pem",
-    before => Prometheus::Daemon['node_exporter'],
   }
 
   file { '/etc/node_exporter/puppet_ca.pem':
     ensure => 'file',
-    mode   => '0400',
-    owner  => 'node-exporter',
+    mode   => '0440',
     group  => 'node-exporter',
     source => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    before => Prometheus::Daemon['node_exporter'],
+  }
+
+  service { 'node_exporter':
+    ensure => 'running',
   }
 
   if $consul {
