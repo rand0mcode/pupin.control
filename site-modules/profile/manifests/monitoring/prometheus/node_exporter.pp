@@ -14,18 +14,18 @@ class profile::monitoring::prometheus::node_exporter (
   }
 
   class { 'prometheus::node_exporter':
-    collectors_enable => ['diskstats','filesystem','meminfo','netdev','netstat','stat','time',
+    collectors_enable     => ['diskstats','filesystem','meminfo','netdev','netstat','stat','time',
                           'interrupts','tcpstat', 'textfile', 'systemd', 'qdisc', 'processes',
                           'mountstats', 'logind', 'loadavg', 'entropy', 'edac',
                           'cpufreq', 'cpu', 'conntrack', 'arp'],
-    extra_options     => '--web.listen-address 127.0.0.1:9100',
-    version           => $version,
-    tls_server_config => {
-      cert_file        => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
-      key_file         => "/etc/node_exporter/puppet_${trusted['certname']}.key",
-      client_ca_file   => '/etc/node_exporter/puppet_ca.pem',
-      client_auth_type => 'RequireAndVerifyClientCert'
-    }
+    extra_options         => '--web.listen-address 127.0.0.1:9100',
+    version               => $version,
+    use_tls_server_config => true,
+    tls_cert_file         => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
+    tls_key_file          => "/etc/node_exporter/puppet_${trusted['certname']}.key",
+    tls_client_ca_file    => '/etc/node_exporter/puppet_ca.pem',
+    tls_client_auth_type  => 'RequireAndVerifyClientCert'
+
   }
 
   # copy puppet certs into prometheus dir to use them for querying with client_cert
