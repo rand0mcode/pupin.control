@@ -27,11 +27,6 @@ class profile::monitoring::prometheus::node_exporter (
     tls_client_auth_type  => 'RequireAndVerifyClientCert'
   }
 
-  file { '/etc/node_exporter':
-    ensure => directory,
-    before => Prometheus::Daemon['node_exporter'],
-  }
-
   # copy puppet certs into prometheus dir to use them for querying with client_cert
   file { "/etc/node_exporter/puppet_${trusted['certname']}.key":
     ensure => 'file',
