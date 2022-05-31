@@ -26,6 +26,7 @@ class profile::monitoring::prometheus::node_exporter (
     tls_client_ca_file    => '/etc/node_exporter/puppet_ca.pem',
     tls_client_auth_type  => 'RequireAndVerifyClientCert',
     manage_service        => false,
+    web_config_file       => '/etc/node_exporter/web-config.yml',
   }
 
   file { '/etc/node_exporter':
