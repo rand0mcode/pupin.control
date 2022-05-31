@@ -18,7 +18,7 @@ class profile::monitoring::prometheus::node_exporter (
                           'interrupts','tcpstat', 'textfile', 'systemd', 'qdisc', 'processes',
                           'mountstats', 'logind', 'loadavg', 'entropy', 'edac',
                           'cpufreq', 'cpu', 'conntrack', 'arp'],
-    extra_options         => '--web.listen-address 127.0.0.1:9100',
+    extra_options         => "--web.listen-address ${trusted['certname']}:9100",
     version               => $version,
     use_tls_server_config => true,
     tls_cert_file         => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
@@ -31,6 +31,8 @@ class profile::monitoring::prometheus::node_exporter (
   file { "/etc/node_exporter/puppet_${trusted['certname']}.key":
     ensure => 'file',
     mode   => '0400',
+    owner  => 'node-exporter',
+    group  => 'node-exporter',
     source => "/etc/puppetlabs/puppet/ssl/private_keys/${trusted['certname']}.pem",
     before => Prometheus::Daemon['node_exporter'],
   }
@@ -38,6 +40,8 @@ class profile::monitoring::prometheus::node_exporter (
   file { "/etc/node_exporter/puppet_${trusted['certname']}.crt":
     ensure => 'file',
     mode   => '0400',
+    owner  => 'node-exporter',
+    group  => 'node-exporter',
     source => "/etc/puppetlabs/puppet/ssl/certs/${trusted['certname']}.pem",
     before => Prometheus::Daemon['node_exporter'],
   }
@@ -45,6 +49,8 @@ class profile::monitoring::prometheus::node_exporter (
   file { '/etc/node_exporter/puppet_ca.pem':
     ensure => 'file',
     mode   => '0400',
+    owner  => 'node-exporter',
+    group  => 'node-exporter',
     source => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
     before => Prometheus::Daemon['node_exporter'],
   }
