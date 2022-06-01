@@ -28,7 +28,7 @@ mod 'puppetlabs-stdlib',     :latest
 mod 'icinga-icinga2',        :latest
 mod 'icinga-icinga',         :latest
 mod 'KyleAnderson-consul',   :latest
-mod 'puppet-prometheus',     :git => 'https://github.com/rwaffen/puppet-prometheus.git', :commit => 'cb95f60'
+mod 'puppet-prometheus',     :git => 'https://github.com/rwaffen/puppet-prometheus.git', :commit => 'c12d076'
 
 # elastic
 mod 'puppet-elastic_stack',   :latest
