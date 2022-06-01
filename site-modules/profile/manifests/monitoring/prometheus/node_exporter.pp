@@ -20,21 +20,21 @@ class profile::monitoring::prometheus::node_exporter (
                           'cpufreq', 'cpu', 'conntrack', 'arp'],
     extra_options          => "--web.listen-address ${trusted['certname']}:9100",
     version                => $version,
-    use_tls_server_config  => true,
+    use_tls_server_config  => false,
     tls_cert_file          => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
     tls_key_file           => "/etc/node_exporter/puppet_${trusted['certname']}.key",
     tls_client_ca_file     => '/etc/node_exporter/puppet_ca.pem',
     manage_service         => false,
     web_config_file        => '/etc/node_exporter/web-config.yml',
-    use_http_server_config => true,
+    use_http_server_config => false,
     http2_headers          => {
       'X-Frame-Options' => 'something',
     },
-    basic_auth_users       => {
-      robert1 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
-      robert2 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
-      robert3 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
-    },
+    # basic_auth_users       => {
+    #   robert1 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
+    #   robert2 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
+    #   robert3 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
+    # },
   }
 
   file { '/etc/node_exporter':
