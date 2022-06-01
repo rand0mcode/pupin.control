@@ -20,7 +20,7 @@ class profile::monitoring::prometheus::node_exporter (
                           'cpufreq', 'cpu', 'conntrack', 'arp'],
     extra_options          => "--web.listen-address ${trusted['certname']}:9100",
     version                => $version,
-    use_tls_server_config  => false,
+    use_tls_server_config  => true,
     tls_cert_file          => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
     tls_key_file           => "/etc/node_exporter/puppet_${trusted['certname']}.key",
     tls_client_ca_file     => '/etc/node_exporter/puppet_ca.pem',
