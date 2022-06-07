@@ -7,7 +7,6 @@ Facter.add(:expensive) do
   # recommend the same as the fact name. There is no need to use `setcode`
   # if you are caching the value
   cache(:expensive) do
-    sleep 20
-    'This is an expensive value'
+    (1..500_000).to_a.reject {|n| n % 5 == 0 }
   end
 end
