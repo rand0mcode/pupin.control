@@ -41,5 +41,6 @@ mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-h
 mod 'norisnetwork-auditbeat', :git => 'https://github.com/rwaffen/norisnetwork-auditbeat.git', :commit => '17f63cb'
 
 # stuff
-mod 'dalen-trycatch',         :latest
-mod 'pcfens-ca_cert',         :latest
+mod 'dalen-trycatch',              :latest
+mod 'pcfens-ca_cert',              :latest
+mod 'dylanratcliffe-facter_cache', :latest
