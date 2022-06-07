@@ -5,7 +5,7 @@ Facter.add(:aggregate_expensive, :type => :aggregate) do
 
   # This fact is extremely expensive and should only be run between midnight
   # and 6am
-  execute_only '00:00', '06:00'
+  execute_only '06:00', '11:00'
 
   # If we roll out Puppet to a new server during the day, we don't want this
   # fact to run on the first instance. It's okay for it to just return nil. We
