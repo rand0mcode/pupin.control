@@ -7,7 +7,7 @@ Facter.add(:expensive) do
   # recommend the same as the fact name. There is no need to use `setcode`
   # if you are caching the value
   cache(:expensive) do
-    sleep 2
+    sleep 20
     'This is an expensive value'
   end
 end
