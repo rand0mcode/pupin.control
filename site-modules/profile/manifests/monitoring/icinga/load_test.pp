@@ -2,7 +2,7 @@
 #
 #
 class profile::monitoring::icinga::load_test {
-  Integer[0, 1000].each |$x| {
+  Integer[0, 900].each |$x| {
     $host_name = "host_${x}.dummy.local"
 
     @@icinga2::object::host { $host_name:

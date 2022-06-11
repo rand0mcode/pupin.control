@@ -1,12 +1,14 @@
 # Class: profile::monitoring::icinga::server
 #
 # @param use_exported_resources
+# @param use_puppetdb_resources
 # @param use_authoritative_zones
 # @param defaults
 # @param objects
 # @param zones_d
 class profile::monitoring::icinga::server (
   Boolean $use_exported_resources     = true,
+  Boolean $use_puppetdb_resources     = false,
   Boolean $use_authoritative_zones    = true,
   Hash $defaults                      = {},
   Hash $objects                       = {},
@@ -49,6 +51,15 @@ class profile::monitoring::icinga::server (
   }
 
   include profile::monitoring::icinga::load_test
+
+  if $use_puppetdb_resources {
+    $hosts =  puppet_query('resources { type = "Icinga2::Object::Host" }')
+    $hosts.each |$host, $settings| {
+      icinga2::object::host { $host:
+        * => $settings,
+      }
+    }
+  }
 
   if $use_exported_resources {
     ### Collectors
