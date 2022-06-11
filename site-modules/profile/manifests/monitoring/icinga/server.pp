@@ -61,6 +61,10 @@ class profile::monitoring::icinga::server (
     # }
 
     $hosts.each |$host| {
+      if $host['title'] == 'icinga.priv.rw.betadots.training' {
+        next()
+      }
+
       icinga2::object::host { $host['title']:
         * => $host['parameters'],
       }
