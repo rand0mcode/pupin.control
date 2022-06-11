@@ -18,7 +18,7 @@ class profile::monitoring::icinga::server (
   include mysql::server
   include icinga2
 
-  ensure_resource('package', 'nagios-plugins-all', { 'ensure' => 'latest' })
+  ensure_resource('package', 'nagios-plugins-all', { ensure => 'latest', require => Class['epel'] })
 
   file { '/etc/icinga2/zones.d':
     ensure  => directory,
