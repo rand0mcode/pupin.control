@@ -41,13 +41,12 @@ icinga2::manage_packages: true
 icinga2::feature::api::accept_config: false
 icinga2::feature::api::accept_commands: true
 icinga2::feature::api::pki: 'puppet'
-icinga2::feature::api::endpoints:
-  "%{trusted.certname}": {}
-
+icinga2::feature::api::endpoints: { "%{trusted.certname}": {} }
 icinga2::feature::api::zones:
   Main:
-    endpoints:
-      - "%{trusted.certname}"
+    endpoints: [ "%{trusted.certname}" ]
+  global_zone:
+    global: true
 
 icinga2::feature::idomysql::database: 'icinga_ido'
 icinga2::feature::idomysql::user: 'icinga_ido'
