@@ -50,8 +50,6 @@ class profile::monitoring::icinga::server (
     }
   }
 
-  include profile::monitoring::icinga::load_test
-
   if $use_puppetdb_resources {
     $hosts =  puppetdb_query('resources { type = "Icinga2::Object::Host" }')
 
