@@ -54,9 +54,9 @@ class profile::monitoring::icinga::server (
 
   if $use_puppetdb_resources {
     $hosts =  puppetdb_query('resources { type = "Icinga2::Object::Host" }')
-    $hosts.each |$host, $settings| {
-      icinga2::object::host { $host:
-        * => $settings,
+    $hosts.each |$host| {
+      icinga2::object::host { $host['title']:
+        * => $host['parameters'],
       }
     }
   }
