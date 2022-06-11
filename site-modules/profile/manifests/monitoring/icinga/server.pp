@@ -61,7 +61,8 @@ class profile::monitoring::icinga::server (
     # }
 
     $hosts.each |$host| {
-      if $host['title'] == 'icinga.priv.rw.betadots.training' {
+      # skip not exported hosts
+      if $host['exported'] == false {
         next()
       }
 
