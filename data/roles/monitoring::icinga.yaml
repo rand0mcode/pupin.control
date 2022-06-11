@@ -23,7 +23,7 @@ mysql::server::db:
 # enable epel-testing for monitoring plugins
 epel::epel_testing_enabled: true
 
-profile::monitoring::icinga::server::use_puppetdb_resources: false
+profile::monitoring::icinga::server::use_puppetdb_resources: true
 profile::monitoring::icinga::server::use_exported_resources: false
 
 icinga2::features:
