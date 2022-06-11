@@ -1,14 +1,17 @@
 # Class: profile::monitoring::icinga::server
 #
-#
+# @param use_exported_resources
+# @param use_authoritative_zones
+# @param defaults
+# @param objects
+# @param zones_d
 class profile::monitoring::icinga::server (
-  Boolean $import_customer_hostgroups = true,
   Boolean $use_exported_resources     = true,
   Boolean $use_authoritative_zones    = true,
   Hash $defaults                      = {},
   Hash $objects                       = {},
   Hash $zones_d                       = {},
-){
+) {
   exec { '/usr/bin/yum config-manager --set-enabled powertools': }
 
   include icinga::repos
@@ -28,7 +31,11 @@ class profile::monitoring::icinga::server (
   }
 
   if $use_authoritative_zones {
-    create_resources('file', $zones_d)
+    $zones_d.each |String $zone_d, Hash $settings| {
+      file { $zone_d:
+        * => $settings,
+      }
+    }
   }
 
   $objects.each |String $object_type, Hash $content| {
@@ -43,8 +50,8 @@ class profile::monitoring::icinga::server (
 
   if $use_exported_resources {
     ### Collectors
-    Icinga2::Object::Endpoint <<| |>> { }
-    Icinga2::Object::Host     <<| |>> { }
-    Icinga2::Object::Zone     <<| |>> { }
+    Icinga2::Object::Endpoint <<| |>> {}
+    Icinga2::Object::Host     <<| |>> {}
+    Icinga2::Object::Zone     <<| |>> {}
   }
 }

@@ -1,0 +1,55 @@
+---
+icinga_master: 'icinga.pub.rw.betadots.training'
+
+infra::profile::icinga::export_host::vars:
+  disks:
+    disk: {}
+  disk_exclude_type:
+    - "cgroup"
+    - "configfs"
+    - "devfs"
+    - "devtmpfs"
+    - "fdescfs"
+    - "fuse.glusterfs"
+    - "fuse.gvfs-fuse-daemon"
+    - "fuse.gvfsd-fuse"
+    - "iso9660"
+    - "mtmfs"
+    - "none"
+    - "nfs"
+    - "nfs4"
+    - "nsfs"
+    - "nsfs4"
+    - "overlay"
+    - "proc"
+    - "squashfs"
+    - "sysfs"
+    - "tmpfs"
+    - "tracefs"
+
+icinga2::feature::api::pki: puppet
+icinga2::confd: false
+
+icinga2::feature::api::accept_config: true
+icinga2::feature::api::accept_commands: true
+icinga2::constants:
+  NodeName: "%{facts.networking.fqdn}"
+  ZoneName: "%{facts.networking.fqdn}"
+
+icinga2::feature::api::endpoints:
+  NodeName: {}
+  "%{lookup('icinga_main')}":
+    host: "%{lookup('icinga_main')}"
+
+icinga2::feature::api::zones:
+  Main:
+    endpoints:
+      - "%{lookup('icinga_main')}"
+
+  ZoneName:
+    endpoints:
+      - NodeName
+    parent: Main
+
+  global_zone:
+    global: true
