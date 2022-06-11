@@ -48,6 +48,8 @@ class profile::monitoring::icinga::server (
     }
   }
 
+  include profile::monitoring::icinga::load_test
+
   if $use_exported_resources {
     ### Collectors
     Icinga2::Object::Endpoint <<| |>> {}
