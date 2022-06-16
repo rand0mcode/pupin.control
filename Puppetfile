@@ -46,4 +46,4 @@ mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
 
 # testing
-mod 'puppet-bolt_pe', :git => 'https://github.com/betadots/puppet-bolt_pe', :commit => '1dcd179'
+mod 'puppet-bolt_pe', :git => 'https://github.com/betadots/puppet-bolt_pe', :commit => 'aaf59c6'
