@@ -19,6 +19,7 @@ class profile::base (
 
   include profile::add
   include profile::puppet::agent
+  include profile::monitoring::elastic::repo
 
   # manage prometheus node exporter + nginx reverse proxy
   if $enable_prometheus {
