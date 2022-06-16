@@ -51,19 +51,9 @@ class profile::monitoring::icinga::server (
   }
 
   if $use_puppetdb_resources {
-    $hosts =  puppetdb_query('resources { type = "Icinga2::Object::Host" }')
-
-    # file { '/tmp/icingahosts.txt':
-    #   ensure  => file,
-    #   content => $hosts,
-    # }
+    $hosts =  puppetdb_query('resources { type = "Icinga2::Object::Host" and exported = true }')
 
     $hosts.each |$host| {
-      # skip not exported hosts
-      if $host['exported'] == false {
-        next()
-      }
-
       icinga2::object::host { $host['title']:
         * => $host['parameters'],
       }
