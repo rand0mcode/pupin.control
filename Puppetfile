@@ -44,3 +44,6 @@ mod 'norisnetwork-auditbeat', :git => 'https://github.com/rwaffen/norisnetwork-a
 mod 'dalen-trycatch',              :latest
 mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
+
+# testing
+mod 'puppet-bolt_pe', :git => 'https://github.com/betadots/puppet-bolt_pe'
