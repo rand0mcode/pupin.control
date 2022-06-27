@@ -2,70 +2,70 @@
 #
 #
 class profile::monitoring::prometheus::node_exporter (
-  String $version   = '1.3.0',
+  String $version   = '1.3.1',
   String $listen_ip = $facts['networking']['interfaces']['ens10']['ip'],
   Boolean $consul   = false
 
 ){
-  include profile::nginx
-
-  class { 'prometheus::node_exporter':
-    collectors_enable => ['diskstats','filesystem','meminfo','netdev','netstat','stat','time',
-                          'interrupts','tcpstat', 'textfile', 'systemd', 'qdisc', 'processes',
-                          'mountstats', 'logind', 'loadavg', 'entropy', 'edac',
-                          'cpufreq', 'cpu', 'conntrack', 'arp'],
-    extra_options     => '--web.listen-address 127.0.0.1:9100',
-    version           => $version,
-  }
-
-  if $facts['os']['selinux']['enabled'] {
-    selboolean { 'httpd_can_network_connect':
-      value      => 'on',
-      persistent => true,
-      before     => Nginx::Resource::Server['node_exporter'],
-    }
-
-    selboolean { 'httpd_can_network_relay':
-      value      => 'on',
-      persistent => true,
-      before     => Nginx::Resource::Server['node_exporter'],
-    }
-
-    selboolean { 'httpd_setrlimit':
-      value      => 'on',
-      persistent => true,
-      before     => Nginx::Resource::Server['node_exporter'],
-    }
-
-    selinux::port { 'allow-nginx-9100':
-      ensure   => 'present',
-      seltype  => 'http_port_t',
-      protocol => 'tcp',
-      port     => 9100,
-      before   => Nginx::Resource::Server['node_exporter'],
-    }
-  }
-
-  nginx::resource::server { 'node_exporter':
-    ipv6_enable       => false,
-    listen_ip         => $listen_ip,
-    listen_port       => 9100,
-    proxy             => 'http://127.0.0.1:9100',
-    server_name       => [$trusted['certname']],
-    ssl               => true,
-    ssl_cert          => "/etc/nginx/puppet_${trusted['certname']}.crt",
-    ssl_client_cert   => '/etc/nginx/puppet_ca.pem',
-    ssl_crl           => '/etc/nginx/puppet_crl.pem',
-    ssl_key           => "/etc/nginx/puppet_${trusted['certname']}.key",
-    ssl_port          => 9100,
-    ssl_protocols     => 'TLSv1.2',
-    ssl_verify_client => 'on',
-  }
-
   firewall { '100 allow prometheus access':
     dport  => [9100],
     proto  => 'tcp',
     action => 'accept',
+  }
+
+  class { 'prometheus::node_exporter':
+    collectors_enable      => ['diskstats','filesystem','meminfo','netdev','netstat','stat','time',
+                          'interrupts','tcpstat', 'textfile', 'systemd', 'qdisc', 'processes',
+                          'mountstats', 'logind', 'loadavg', 'entropy', 'edac',
+                          'cpufreq', 'cpu', 'conntrack', 'arp'],
+    extra_options          => "--web.listen-address ${trusted['certname']}:9100",
+    version                => $version,
+    use_tls_server_config  => true,
+    tls_cert_file          => "/etc/node_exporter/puppet_${trusted['certname']}.crt",
+    tls_key_file           => "/etc/node_exporter/puppet_${trusted['certname']}.key",
+    tls_client_ca_file     => '/etc/node_exporter/puppet_ca.pem',
+    manage_service         => false,
+    web_config_file        => '/etc/node_exporter/web-config.yml',
+    use_http_server_config => false,
+    http2_headers          => {
+      'X-Frame-Options' => 'something',
+    },
+    # basic_auth_users       => {
+    #   robert1 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
+    #   robert2 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
+    #   robert3 => '$apr1$N02mpIL9$0y0vvnDsPF4UPhHv/zX9i/',
+    # },
+  }
+
+  file { '/etc/node_exporter':
+    ensure => directory,
+    group  => 'node-exporter',
+  }
+
+  # copy puppet certs into prometheus dir to use them for querying with client_cert
+  file { "/etc/node_exporter/puppet_${trusted['certname']}.key":
+    ensure => 'file',
+    mode   => '0440',
+    group  => 'node-exporter',
+    source => "/etc/puppetlabs/puppet/ssl/private_keys/${trusted['certname']}.pem",
+  }
+
+  file { "/etc/node_exporter/puppet_${trusted['certname']}.crt":
+    ensure => 'file',
+    mode   => '0440',
+    group  => 'node-exporter',
+    source => "/etc/puppetlabs/puppet/ssl/certs/${trusted['certname']}.pem",
+  }
+
+  file { '/etc/node_exporter/puppet_ca.pem':
+    ensure => 'file',
+    mode   => '0440',
+    group  => 'node-exporter',
+    source => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+  }
+
+  service { 'node_exporter':
+    ensure => 'running',
   }
 
   if $consul {
@@ -85,4 +85,5 @@ class profile::monitoring::prometheus::node_exporter (
       tags    => ['node-exporter'],
     }
   }
+
 }

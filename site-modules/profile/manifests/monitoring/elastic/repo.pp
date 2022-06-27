@@ -1,9 +1,11 @@
 # Class: profile::monitoring::elastic::repo
 #
+# @param major_version
+# Sets the major version for the elstic stack
 #
 class profile::monitoring::elastic::repo (
   Integer $major_version = 8,
-){
+) {
   # elastic repo does not like to serve rpms over IPv6
   # augeas { 'yum.conf_ip_resolve':
   #   incl    => '/etc/yum.conf',

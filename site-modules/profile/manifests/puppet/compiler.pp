@@ -6,7 +6,7 @@ class profile::puppet::compiler (
   String $r10k_version,
   Array[String[1]] $r10k_purge,
   Optional[Stdlib::Host] $puppetdb_host = undef,
-){
+) {
   include git
 
   firewall { '100 allow puppet access':
@@ -22,7 +22,7 @@ class profile::puppet::compiler (
       purge_levels    => $r10k_purge,
       generate_types  => true,
       purge_allowlist => ['.resource_types'],
-    }
+    },
   }
 
   cron { 'update_puppet_envs':

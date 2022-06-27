@@ -20,3 +20,7 @@ heartbeat::outputs:
       - "http://elastic01.%{facts.networking.domain}:9200"
       - "http://elastic02.%{facts.networking.domain}:9200"
       - "http://elastic03.%{facts.networking.domain}:9200"
+
+
+additional_classes:
+  - profile::monitoring::icinga::load_test
