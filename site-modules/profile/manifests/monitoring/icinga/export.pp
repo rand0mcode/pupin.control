@@ -1,6 +1,19 @@
 # Class: profile::monitoring::icinga::export
 #
 #
+# @param address4
+# @param address6
+# @param check_command
+# @param enable_flapping
+# @param endpoint_name
+# @param export_endpoint
+# @param host_name
+# @param host_template
+# @param is_main
+# @param node_type
+# @param parent_zone
+# @param target_zone
+# @param vars
 class profile::monitoring::icinga::export (
   Array            $host_template,
   Boolean          $enable_flapping,
@@ -39,7 +52,7 @@ class profile::monitoring::icinga::export (
     if $export_endpoint {
       @@icinga2::object::endpoint { $host_name:
         endpoint_name => $host_name,
-        host          => $address,
+        host          => $address4,
         tag           => [$node_type, $parent_zone],
       }
 

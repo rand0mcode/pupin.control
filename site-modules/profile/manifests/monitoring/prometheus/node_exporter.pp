@@ -1,12 +1,21 @@
 # Class: profile::monitoring::prometheus::node_exporter
 #
 #
+# @param version
+#   version to install
+#
+# @param listen_ip
+#   ip adress to listen on
+#
+# @param consul
+#   toggle to use consul
+#
 class profile::monitoring::prometheus::node_exporter (
   String $version   = '1.3.1',
   String $listen_ip = $facts['networking']['interfaces']['ens10']['ip'],
   Boolean $consul   = false
 
-){
+) {
   firewall { '100 allow prometheus access':
     dport  => [9100],
     proto  => 'tcp',
@@ -14,10 +23,12 @@ class profile::monitoring::prometheus::node_exporter (
   }
 
   class { 'prometheus::node_exporter':
-    collectors_enable      => ['diskstats','filesystem','meminfo','netdev','netstat','stat','time',
-                          'interrupts','tcpstat', 'textfile', 'systemd', 'qdisc', 'processes',
-                          'mountstats', 'logind', 'loadavg', 'entropy', 'edac',
-                          'cpufreq', 'cpu', 'conntrack', 'arp'],
+    collectors_enable      => [
+      'diskstats','filesystem','meminfo','netdev','netstat','stat','time',
+      'interrupts','tcpstat', 'textfile', 'systemd', 'qdisc', 'processes',
+      'mountstats', 'logind', 'loadavg', 'entropy', 'edac', 'cpufreq',
+      'cpu', 'conntrack', 'arp',
+    ],
     extra_options          => "--web.listen-address ${trusted['certname']}:9100",
     version                => $version,
     use_tls_server_config  => true,
@@ -78,12 +89,11 @@ class profile::monitoring::prometheus::node_exporter (
           http     => 'http://127.0.0.1:9100',
           interval => '10s',
           timeout  => '1s'
-        }
+        },
       ],
       port    => 9100,
       address => $trusted['certname'],
       tags    => ['node-exporter'],
     }
   }
-
 }

@@ -1,6 +1,24 @@
 # Class: profile::base
 #
 #
+# @param enable_prometheus
+#   toggle to activate prometheus profiles
+#
+# @param enable_filebeat
+#   toggle to activate filebeat profiles
+#
+# @param enable_metricbeat
+#   toggle to activate metricbeat profiles
+#
+# @param enable_heartbeat
+#   toggle to activate heartbeat profiles
+#
+# @param enable_auditbeat
+#   toggle to activate auditbeat profiles
+#
+# @param enable_icinga
+#   toggle to activate icinga2 profiles
+#
 class profile::base (
   Boolean $enable_prometheus = false,
   Boolean $enable_filebeat   = false,

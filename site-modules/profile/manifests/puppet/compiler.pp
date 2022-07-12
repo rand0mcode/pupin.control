@@ -1,6 +1,18 @@
 # Class: profile::puppet::compiler
 #
 #
+# @param control_repo
+#   remote url of the git control repository
+#
+# @param r10k_version
+#   version of r10k to install
+#
+# @param r10k_purge
+#   purging options for r10k
+#
+# @param puppetdb_host
+#   hostname of the puppetdb
+#
 class profile::puppet::compiler (
   String $control_repo,
   String $r10k_version,
