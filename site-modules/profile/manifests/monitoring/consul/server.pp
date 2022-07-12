@@ -7,7 +7,7 @@ class profile::monitoring::consul::server {
   }
 
   package { 'unzip':
-    ensure => 'installed'
+    ensure => 'installed',
   }
 
   # has to be run before the pem so that the consul user is present
