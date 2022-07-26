@@ -45,4 +45,5 @@ mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
 
 # testing
-mod 'biemond-oradb', '3.0.19'
+mod 'biemond-oradb',    :latest
+mod 'petems-swap_file', :latest

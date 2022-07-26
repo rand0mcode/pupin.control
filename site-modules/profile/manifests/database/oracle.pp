@@ -23,4 +23,28 @@ class profile::database::oracle (
     ensure => 'installed',
     source => "${preinstall_path}/${preinstall_pkg}",
   }
+
+  # set the swap ,forge puppet module petems-swap_file
+  class { 'swap_file':
+    swapfile     => '/var/swap.1',
+    swapfilesize => '8192000000',
+  }
+
+  $puppet_download_mnt_point = 'oradb/'
+
+  oradb::installdb { '12.2.0.1_Linux-x86-64':
+    version                   => '12.2.0.1',
+    file                      => 'V839960-01',
+    database_type             => 'EE',
+    oracle_base               => '/oracle',
+    oracle_home               => '/oracle/product/12.2/db',
+    bash_profile              => true,
+    user                      => 'oracle',
+    group                     => 'dba',
+    group_install             => 'oinstall',
+    group_oper                => 'oper',
+    download_dir              => '/data/install',
+    zip_extract               => true,
+    puppet_download_mnt_point => $puppet_download_mnt_point,
+  }
 }
