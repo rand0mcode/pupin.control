@@ -16,8 +16,8 @@ class profile::database::oracle (
   String[1] $preinstall_rel  = $facts['os']['release']['major'],
   String[1] $preinstall_ver  = '1.0-2',
 
-  Stdlib::HTTPSUrl $preinstall_path = "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/${preinstall_arc}/getPackage",
-  Stdlib::HTTPSUrl $preinstall_pkg  = "${preinstall_name}-${preinstall_ver}.el${preinstall_rel}.${preinstall_arc}.rpm",
+  Stdlib::HTTPSUrl $preinstall_path = "https://yum.oracle.com/repo/OracleLinux/OL${preinstall_rel}/appstream/${preinstall_arc}/getPackage",
+  String[1]        $preinstall_pkg  = "${preinstall_name}-${preinstall_ver}.el${preinstall_rel}.${preinstall_arc}.rpm",
 ) {
   package { $preinstall_name:
     ensure => 'installed',
