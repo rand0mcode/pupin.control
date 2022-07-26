@@ -4,17 +4,23 @@
 # @param preinstall_pkg
 #   url of the rpm for preinstallation dependencies
 #
-# @param provider
-#   provider to use for pakacge installation
-#   defaults to rpm, because yum/dnf does not seem to work
+# @param preinstall_arc
+# @param preinstall_name
+# @param preinstall_rel
+# @param preinstall_ver
+# @param preinstall_path
 #
 class profile::database::oracle (
-  Stdlib::HTTPSUrl $preinstall_pkg = 'https://yum.oracle.com/repo/OracleLinux/OL8/appstream/x86_64/getPackage/oracle-database-preinstall-19c-1.0-2.el8.x86_64.rpm',
-  # String[1] $provider = 'rpm',
+  String[1] $preinstall_arc  = $facts['os']['architecture'],
+  String[1] $preinstall_name = 'oracle-database-preinstall-19c',
+  String[1] $preinstall_rel  = $facts['os']['release']['major'],
+  String[1] $preinstall_ver  = '1.0-2',
+
+  Stdlib::HTTPSUrl $preinstall_path = "https://yum.oracle.com/repo/OracleLinux/OL8/appstream/${preinstall_arc}/getPackage",
+  Stdlib::HTTPSUrl $preinstall_pkg  = "${preinstall_name}-${preinstall_ver}.el${preinstall_rel}.${preinstall_arc}.rpm",
 ) {
-  package { 'oracle-database-preinstall-19c':
-    ensure   => 'installed',
-    source   => $preinstall_pkg,
-    # provider => $provider,
+  package { $preinstall_name:
+    ensure => 'installed',
+    source => "${preinstall_path}/${preinstall_pkg}",
   }
 }
