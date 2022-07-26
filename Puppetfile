@@ -28,7 +28,7 @@ mod 'puppetlabs-stdlib',     :latest
 mod 'icinga-icinga2',        :latest
 mod 'icinga-icinga',         :latest
 mod 'KyleAnderson-consul',   :latest
-mod 'puppet-prometheus',     :git => 'https://github.com/rwaffen/puppet-prometheus.git', :commit => '3370728'
+mod 'puppet-prometheus',     :latest
 
 # elastic
 mod 'puppet-elastic_stack',   :latest
@@ -40,10 +40,9 @@ mod 'coreyh-metricbeat',      :git => 'https://github.com/rwaffen/puppet-metricb
 mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git', :commit => '80570d4'
 mod 'norisnetwork-auditbeat', :git => 'https://github.com/rwaffen/norisnetwork-auditbeat.git', :commit => '17f63cb'
 
-# stuff
-mod 'dalen-trycatch',              :latest
+# other
 mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
 
 # testing
-mod 'puppet-bolt_pe', :git => 'https://github.com/betadots/puppet-bolt_pe', :commit => 'd9f0bd4'
+mod 'biemond-oradb', '3.0.19'
