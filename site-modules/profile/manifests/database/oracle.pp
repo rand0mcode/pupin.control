@@ -24,10 +24,10 @@ class profile::database::oracle (
     source => "${preinstall_path}/${preinstall_pkg}",
   }
 
-  # set the swap ,forge puppet module petems-swap_file
-  class { 'swap_file':
-    swapfile     => '/var/swap.1',
-    swapfilesize => '8192000000',
+  swap_file::files { '8GB Swap':
+    ensure       => present,
+    swapfile     => '/var/swap.8gb',
+    swapfilesize => '8GB',
   }
 
   $puppet_download_mnt_point = 'oradb/'
