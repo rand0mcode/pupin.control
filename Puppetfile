@@ -49,5 +49,7 @@ mod 'biemond-oradb',          :latest
 mod 'petems-swap_file',       :latest
 
 mod 'hardening-os_hardening',              :latest
+mod 'fervid-secure_linux_cis',             :latest
+mod 'tomkrieger-security_baseline',        :latest
 mod 'herculesteam-augeasproviders_core',   :latest
 mod 'herculesteam-augeasproviders_sysctl', :latest
