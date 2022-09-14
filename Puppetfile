@@ -35,10 +35,10 @@ mod 'puppet-elastic_stack',   :latest
 mod 'puppet-kibana',          :latest
 mod 'puppet-elasticsearch',   :latest
 mod 'richardc-datacat',       :latest # elastic dependencies
-mod 'pcfens-filebeat',        :git => 'https://github.com/rwaffen/puppet-filebeat',            :commit => 'bd2022b'
-mod 'coreyh-metricbeat',      :git => 'https://github.com/rwaffen/puppet-metricbeat',          :commit => '3e82e12'
-mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git', :commit => '80570d4'
-mod 'norisnetwork-auditbeat', :git => 'https://github.com/rwaffen/norisnetwork-auditbeat.git', :commit => '17f63cb'
+mod 'norisnetwork-auditbeat', :git => 'https://github.com/noris-network/norisnetwork-auditbeat', :commit => '3a903d9'
+mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git',   :commit => '80570d4'
+mod 'coreyh-metricbeat',      :git => 'https://github.com/corey-hammerton/puppet-metricbeat',    :commit => 'dff3f1a'
+mod 'pcfens-filebeat',        :git => 'https://github.com/pcfens/puppet-filebeat',               :commit => 'fee8805'
 
 # other
 mod 'pcfens-ca_cert',              :latest
