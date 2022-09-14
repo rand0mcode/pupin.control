@@ -1,4 +1,4 @@
-# Class: role::monitoring::consul
+# Class: role::monitoring::icinga
 #
 #
 class role::monitoring::icinga {

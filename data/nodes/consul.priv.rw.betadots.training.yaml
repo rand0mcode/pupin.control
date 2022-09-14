@@ -1,0 +1,3 @@
+---
+profile::base::enable_prometheus: true
+profile::monitoring::prometheus::node_exporter::consule: true

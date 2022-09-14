@@ -20,12 +20,12 @@
 #   toggle to activate icinga2 profiles
 #
 class profile::base (
-  Boolean $enable_prometheus = false,
-  Boolean $enable_filebeat   = false,
-  Boolean $enable_metricbeat = false,
+  Boolean $enable_auditbeat  = true,
+  Boolean $enable_filebeat   = true,
   Boolean $enable_heartbeat  = false,
-  Boolean $enable_auditbeat  = false,
   Boolean $enable_icinga     = false,
+  Boolean $enable_metricbeat = true,
+  Boolean $enable_prometheus = false,
 ) {
   # trust puppetca systemwide
   ca_cert::ca { 'PuppetCA':
