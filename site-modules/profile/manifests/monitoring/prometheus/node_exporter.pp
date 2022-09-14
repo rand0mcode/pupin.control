@@ -80,7 +80,10 @@ class profile::monitoring::prometheus::node_exporter (
   }
 
   if $consul {
-    include profile::monitoring::consul::client
+    # consule server needs no client
+    unless $trusted['extensions']['pp_role'] == 'monitoring::consul' {
+      include profile::monitoring::consul::client
+    }
 
     consul::service { 'node-exporter':
       checks  => [
