@@ -88,10 +88,11 @@ class profile::monitoring::prometheus::node_exporter (
     consul::service { 'node-exporter':
       checks  => [
         {
-          name     => 'node_exporter health check',
-          http     => "https://${trusted['certname']}:9100",
-          interval => '10s',
-          timeout  => '1s'
+          name            => 'node_exporter health check',
+          http            => "https://${trusted['certname']}:9100",
+          tls_skip_verify => true, # because we use puppet certs here
+          interval        => '10s',
+          timeout         => '1s'
         },
       ],
       port    => 9100,

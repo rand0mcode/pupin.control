@@ -27,7 +27,7 @@ mod 'puppetlabs-stdlib',     :latest
 # services
 mod 'icinga-icinga2',        :latest
 mod 'icinga-icinga',         :latest
-mod 'KyleAnderson-consul',   :latest
+mod 'puppet-consul',         :latest
 mod 'puppet-prometheus',     :latest
 
 # elastic
