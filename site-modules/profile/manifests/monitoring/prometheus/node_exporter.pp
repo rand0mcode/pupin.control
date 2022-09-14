@@ -89,7 +89,7 @@ class profile::monitoring::prometheus::node_exporter (
       checks  => [
         {
           name     => 'node_exporter health check',
-          http     => "https://${listen_ip}:9100",
+          http     => "https://${trusted['certname']}:9100",
           interval => '10s',
           timeout  => '1s'
         },
