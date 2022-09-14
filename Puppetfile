@@ -28,22 +28,28 @@ mod 'puppetlabs-stdlib',     :latest
 mod 'icinga-icinga2',        :latest
 mod 'icinga-icinga',         :latest
 mod 'KyleAnderson-consul',   :latest
-mod 'puppet-prometheus',     :git => 'https://github.com/rwaffen/puppet-prometheus.git', :commit => '3370728'
+mod 'puppet-prometheus',     :latest
 
 # elastic
 mod 'puppet-elastic_stack',   :latest
 mod 'puppet-kibana',          :latest
 mod 'puppet-elasticsearch',   :latest
 mod 'richardc-datacat',       :latest # elastic dependencies
-mod 'pcfens-filebeat',        :git => 'https://github.com/rwaffen/puppet-filebeat',            :commit => 'bd2022b'
-mod 'coreyh-metricbeat',      :git => 'https://github.com/rwaffen/puppet-metricbeat',          :commit => '3e82e12'
-mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git', :commit => '80570d4'
-mod 'norisnetwork-auditbeat', :git => 'https://github.com/rwaffen/norisnetwork-auditbeat.git', :commit => '17f63cb'
+mod 'norisnetwork-auditbeat', :git => 'https://github.com/noris-network/norisnetwork-auditbeat', :commit => '3a903d9'
+mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git',   :commit => '80570d4'
+mod 'coreyh-metricbeat',      :git => 'https://github.com/corey-hammerton/puppet-metricbeat',    :commit => 'dff3f1a'
+mod 'pcfens-filebeat',        :git => 'https://github.com/pcfens/puppet-filebeat',               :commit => 'fee8805'
 
-# stuff
-mod 'dalen-trycatch',              :latest
+# other
 mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
 
 # testing
-mod 'puppet-bolt_pe', :git => 'https://github.com/betadots/puppet-bolt_pe', :commit => 'd9f0bd4'
+mod 'biemond-oradb',          :latest
+mod 'petems-swap_file',       :latest
+
+mod 'hardening-os_hardening',              :latest
+mod 'fervid-secure_linux_cis',             :latest
+mod 'tomkrieger-security_baseline',        :latest
+mod 'herculesteam-augeasproviders_core',   :latest
+mod 'herculesteam-augeasproviders_sysctl', :latest

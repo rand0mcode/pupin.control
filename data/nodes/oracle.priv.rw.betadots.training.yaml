@@ -1,0 +1,4 @@
+---
+additional_classes:
+  - profile::database::oracle
+  - profile::hardening
