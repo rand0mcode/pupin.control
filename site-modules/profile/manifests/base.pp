@@ -22,9 +22,9 @@
 class profile::base (
   Boolean $enable_auditbeat  = true,
   Boolean $enable_filebeat   = true,
+  Boolean $enable_metricbeat = true,
   Boolean $enable_heartbeat  = false,
   Boolean $enable_icinga     = false,
-  Boolean $enable_metricbeat = true,
   Boolean $enable_prometheus = false,
 ) {
   # trust puppetca systemwide
@@ -45,22 +45,18 @@ class profile::base (
   }
 
   if $enable_filebeat {
-    include profile::monitoring::elastic::repo
     include profile::monitoring::elastic::filebeat
   }
 
   if $enable_metricbeat {
-    include profile::monitoring::elastic::repo
     include profile::monitoring::elastic::metricbeat
   }
 
   if $enable_heartbeat {
-    include profile::monitoring::elastic::repo
     include profile::monitoring::elastic::heartbeat
   }
 
   if $enable_auditbeat {
-    include profile::monitoring::elastic::repo
     include profile::monitoring::elastic::auditbeat
   }
 
