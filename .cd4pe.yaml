@@ -11,17 +11,18 @@ pipelines:
       - pull_request
       - commit
     stages:
-      - name: "Lint/Parser validation"
-        auto_promote: all_succeeded
-        steps:
-          - type: job
-            name: control-repo-puppetfile-syntax-validate
-          - type: job
-            name: control-repo-template-syntax-validate
-          - type: job
-            name: control-repo-hiera-syntax-validate
-          - type: job
-            name: control-repo-manifest-validate
+    # needs docker execution host
+      # - name: "Lint/Parser validation"
+      #   auto_promote: all_succeeded
+      #   steps:
+      #     - type: job
+      #       name: control-repo-puppetfile-syntax-validate
+      #     - type: job
+      #       name: control-repo-template-syntax-validate
+      #     - type: job
+      #       name: control-repo-hiera-syntax-validate
+      #     - type: job
+      #       name: control-repo-manifest-validate
 
       - name: "Impact Analysis"
         auto_promote: any_succeeded
