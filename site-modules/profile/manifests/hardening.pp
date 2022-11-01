@@ -2,5 +2,5 @@
 #
 #
 class profile::hardening {
-  class { 'os_hardening': }
+  include os_hardening
 }
