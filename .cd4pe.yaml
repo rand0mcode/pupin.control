@@ -24,7 +24,7 @@ pipelines:
         auto_promote: all_succeeded
         steps:
           - type: deployment
-            policy: direct_merge
+            policy: cd4pe_deployments::direct_merge
             name: "Direct merge to Production"
             target:
               type: node_group
