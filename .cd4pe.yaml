@@ -1,0 +1,78 @@
+---
+spec_version: v1
+config:
+  enable_pull_requests_from_forks: false
+  deployment_policy_branch: production
+  enable_pe_plans: true
+pipelines:
+  /feature_.*/:
+    triggers:
+      - pull_request
+      - commit
+    stages:
+      - name: "Lint/Parser validation"
+        auto_promote: all_succeeded
+        steps:
+          - type: job
+            name: control-repo-puppetfile-syntax-validate
+          - type: job
+            name: control-repo-template-syntax-validate
+      - name: "Deploy feature environment"
+        steps:
+          - type: deployment
+            pe_server: PE
+            policy: feature_branch
+  main:
+    triggers:
+      - pull_request
+      - commit
+    stages:
+      - name: "Lint/Parser validation"
+        auto_promote: all_succeeded
+        steps:
+          - type: job
+            name: control-repo-puppetfile-syntax-validate
+          - type: job
+            name: control-repo-template-syntax-validate
+          - type: job
+            name: control-repo-hiera-syntax-validate
+          - type: job
+            name: control-repo-manifest-validate
+
+      - name: "Impact Analysis"
+        auto_promote: any_succeeded
+        steps:
+          - type: impact_analysis
+            concurrent_compilations: 10
+            deployments:
+              - "Direct merge to Production"
+              - "my custom deploy 1"
+          - type: pull_request_gate
+
+      - name: "Deploy to lower UAT"
+        auto_promote: false
+        steps:
+          - type: deployment
+            policy: direct_merge
+            name: "Direct merge to Production"
+            target:
+              type: node_group
+              node_group_id:   fcda068f-e499-44ef-81f2-255fc487b2e2
+            pe_server: PE
+            parameters:
+              stop_if_nodes_fail: 10
+              noop: false
+              timeout: 60
+          - type: deployment
+            name: "my custom deploy 1"
+            policy:
+              source: control-repo
+              name: deployments::canary
+            target:
+              type: node_group
+              node_group_id: fcda068f-e499-44ef-81f2-255fc487b2e2
+            pe_server: PE
+            parameters:
+              noop: true
+              max_node_failure: 50
+              canary_size: 4
