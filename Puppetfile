@@ -27,7 +27,7 @@ mod 'puppetlabs-stdlib',     :latest
 # services
 mod 'icinga-icinga2',        :latest
 mod 'icinga-icinga',         :latest
-mod 'KyleAnderson-consul',   :latest
+mod 'puppet-consul',         :latest
 mod 'puppet-prometheus',     :latest
 
 # elastic
@@ -48,8 +48,17 @@ mod 'dylanratcliffe-facter_cache', :latest
 mod 'biemond-oradb',          :latest
 mod 'petems-swap_file',       :latest
 
+# hardening testing
 mod 'hardening-os_hardening',              :latest
 mod 'fervid-secure_linux_cis',             :latest
 mod 'tomkrieger-security_baseline',        :latest
 mod 'herculesteam-augeasproviders_core',   :latest
 mod 'herculesteam-augeasproviders_sysctl', :latest
+
+# cd4pe
+mod 'puppetlabs-cd4pe',                '3.2.5'
+mod 'puppetlabs-cd4pe_jobs',           '1.6.0'
+mod 'puppetlabs-puppet_authorization', '0.5.1'
+mod 'puppetlabs-hocon',                '1.1.0'
+mod 'puppetlabs-docker',               '5.1.0'
+

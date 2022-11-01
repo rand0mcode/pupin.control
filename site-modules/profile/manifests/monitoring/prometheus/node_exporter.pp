@@ -80,15 +80,19 @@ class profile::monitoring::prometheus::node_exporter (
   }
 
   if $consul {
-    include profile::monitoring::consul::client
+    # consule server needs no client
+    unless $trusted['extensions']['pp_role'] == 'monitoring::consul' {
+      include profile::monitoring::consul::client
+    }
 
     consul::service { 'node-exporter':
       checks  => [
         {
-          name     => 'node_exporter health check',
-          http     => 'http://127.0.0.1:9100',
-          interval => '10s',
-          timeout  => '1s'
+          name            => 'node_exporter health check',
+          http            => "https://${trusted['certname']}:9100",
+          tls_skip_verify => true, # because we use puppet certs here
+          interval        => '10s',
+          timeout         => '1s'
         },
       ],
       port    => 9100,

@@ -1,7 +1,7 @@
-# Class: profile::monitoring::consule::client
+# Class: profile::monitoring::consul::client
 #
 #
-class profile::monitoring::consule::client {
+class profile::monitoring::consul::client {
   file { '/opt/consul':
     ensure => 'directory',
   }
