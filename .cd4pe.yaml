@@ -8,29 +8,35 @@ config:
 pipelines:
   main:
     triggers:
-      - pull_request
-      - commit
+    - "COMMIT"
+    - "PULL_REQUEST"
     stages:
-      - name: "Impact Analysis"
-        auto_promote: any_succeeded
-        steps:
-          - type: impact_analysis
-            concurrent_compilations: 10
-            deployments:
-              - "Direct merge to Production"
-          - type: pull_request_gate
-
-      - name: "Deploy to Production"
-        auto_promote: all_succeeded
-        steps:
-          - type: deployment
-            policy: cd4pe_deployments::direct_merge
-            name: "Direct merge to Production"
-            target:
-              type: node_group
-              node_group_id: 2e27a43a-d566-4e87-a0b9-ba767a760905 # All Environments, fetched from Primary "Node Groups" Tab
-            pe_server: PE
-            parameters:
-              stop_if_nodes_fail: 10
-              noop: false
-              timeout: 60
+    - name: "Impact Analysis"
+      steps:
+      - type: "IMPACT_ANALYSIS"
+        deployments:
+        - "Deployment to production on PE"
+        concurrent_compilations: 10
+        all_deployments: false
+      - type: "PULL_REQUEST_GATE"
+        concurrent_compilations: 0
+        all_deployments: false
+      auto_promote: "any_succeeded"
+    - name: "Deploy to Production"
+      steps:
+      - type: "DEPLOYMENT"
+        name: "Deployment to production on PE"
+        policy:
+          name: "cd4pe_deployments::direct"
+        parameters:
+          noop: false
+          fail_if_no_nodes: true
+          max_node_failure: 5
+        timeout: 300000
+        concurrent_compilations: 0
+        all_deployments: false
+        pe_server: "PE"
+        target:
+          type: "NODE_GROUP"
+          node_group_id: "2e27a43a-d566-4e87-a0b9-ba767a760905" # All Environments
+      auto_promote: "all_succeeded"
