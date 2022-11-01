@@ -25,6 +25,11 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
-  include "role::${trusted['extensions']['pp_role']}"
+  if empty($trusted['extensions']['pp_role']) {
+    include 'role::default'
+  } else {
+    include "role::${trusted['extensions']['pp_role']}"
+  }
+
   lookup('additional_classes', Array[String[1]], 'unique', []).include
 }
