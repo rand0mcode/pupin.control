@@ -32,6 +32,21 @@ pipelines:
               - "Direct merge to Production"
           - type: pull_request_gate
 
+      - name: "Deploy to Production"
+        auto_promote: all_succeeded
+        steps:
+          - type: deployment
+            policy: direct_merge
+            name: "Direct merge to Production"
+            target:
+              type: node_group
+              node_group_id: 2e27a43a-d566-4e87-a0b9-ba767a760905 # All Environments, fetched from Primary "Node Groups" Tab
+            pe_server: PE
+            parameters:
+              stop_if_nodes_fail: 10
+              noop: false
+              timeout: 60
+
   # development:
   #   triggers:
   #     - pull_request
