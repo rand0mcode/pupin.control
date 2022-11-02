@@ -5,4 +5,4 @@ puppet_enterprise::profile::master::r10k_private_key: '/opt/puppetlabs/server/da
 
 profile::add::packages:
   nmap:
-    ensure: 'installed'
+    ensure: 'absent'
