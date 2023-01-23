@@ -25,8 +25,9 @@ mod 'puppetlabs-mysql',      :latest
 mod 'puppetlabs-stdlib',     :latest
 
 # services
-mod 'icinga-icinga2',        :latest
-mod 'icinga-icinga',         :latest
+mod 'icinga-icinga',         :latest # meta module to manage repos and stuff ...
+mod 'icinga-icinga2',        :latest # icinga2 core
+mod 'icinga-icingaweb2',     :latest # icinga2 webui
 mod 'puppet-consul',         :latest
 mod 'puppet-prometheus',     :latest
 
@@ -35,18 +36,18 @@ mod 'puppet-elastic_stack',   :latest
 mod 'puppet-kibana',          :latest
 mod 'puppet-elasticsearch',   :latest
 mod 'richardc-datacat',       :latest # elastic dependencies
-mod 'norisnetwork-auditbeat', :git => 'https://github.com/noris-network/norisnetwork-auditbeat', :commit => '3a903d9'
-mod 'norisnetwork-heartbeat', :git => 'https://github.com/rwaffen/norisnetwork-heartbeat.git',   :commit => '80570d4'
-mod 'coreyh-metricbeat',      :git => 'https://github.com/corey-hammerton/puppet-metricbeat',    :commit => 'dff3f1a'
-mod 'pcfens-filebeat',        :git => 'https://github.com/pcfens/puppet-filebeat',               :commit => 'fee8805'
+mod 'pcfens-filebeat',        :latest
+mod 'norisnetwork-auditbeat', :git => 'https://github.com/noris-network/norisnetwork-auditbeat'
+mod 'norisnetwork-heartbeat', :git => 'https://github.com/noris-network/norisnetwork-heartbeat'
+mod 'coreyh-metricbeat',      :git => 'https://github.com/corey-hammerton/puppet-metricbeat'
 
 # other
 mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
 
 # testing
-mod 'biemond-oradb',          :latest
-mod 'petems-swap_file',       :latest
+# mod 'biemond-oradb',          :latest
+# mod 'petems-swap_file',       :latest
 
 # # hardening testing
 # mod 'hardening-os_hardening',              :latest
