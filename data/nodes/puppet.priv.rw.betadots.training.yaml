@@ -4,3 +4,10 @@ classes:
 
 # be a choria broker server
 choria::broker::network_broker: true
+
+# add command user
+# mco does not want to be executed as root
+stdlib::manage::create_resources:
+  user:
+    mco:
+      ensure: present

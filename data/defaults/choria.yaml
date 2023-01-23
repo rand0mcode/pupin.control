@@ -2,31 +2,31 @@
 mcollective::client: true
 choria::server: true # start choria client server
 choria::manage_package_repo: true
-choria::srvdomain: priv.choria.rw.betadots.training
+choria::srvdomain: "%{facts.networking.domain}"
 
 mcollective_choria::config:
   security.serializer: "json"
   use_srv: false
-  puppetserver_host: "puppet.priv.choria.rw.betadots.training"
+  puppetserver_host: "puppet.%{facts.networking.domain}"
   puppetserver_port: 8140
-  puppetca_host: "puppetca.priv.choria.rw.betadots.training"
+  puppetca_host: "puppetca.%{facts.networking.domain}"
   puppetca_port: 8140
-  puppetdb_host: "puppetdb.priv.choria.rw.betadots.training"
+  puppetdb_host: "puppetdb.%{facts.networking.domain}"
   puppetdb_port: 8081
-  middleware_hosts: "puppet.priv.choria.rw.betadots.training:4222"
+  middleware_hosts: "puppet.%{facts.networking.domain}:4222"
 
 choria::server_config:
-  plugin.choria.puppetserver_host: "puppet.priv.choria.rw.betadots.training"
+  plugin.choria.puppetserver_host: "puppet.%{facts.networking.domain}"
   plugin.choria.puppetserver_port: 8140
-  plugin.choria.puppetca_host: "puppetca.priv.choria.rw.betadots.training"
+  plugin.choria.puppetca_host: "puppetca.%{facts.networking.domain}"
   plugin.choria.puppetca_port: 8140
-  plugin.choria.puppetdb_host: "puppetdb.priv.choria.rw.betadots.training"
+  plugin.choria.puppetdb_host: "puppetdb.%{facts.networking.domain}"
   plugin.choria.puppetdb_port: 8081
-  plugin.choria.middleware_hosts: "puppet.priv.choria.rw.betadots.training:4222"
+  plugin.choria.middleware_hosts: "puppet.%{facts.networking.domain}:4222"
 
 mcollective::site_policies:
   - action: "allow"
-    callers: "choria=robert.mcollective"
+    callers: "choria=mco.mcollective"
     actions: "*"
     facts: "*"
     classes: "*"
