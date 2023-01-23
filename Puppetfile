@@ -46,6 +46,7 @@ mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
 
 # testing
+mod 'choria-choria',          :latest
 # mod 'biemond-oradb',          :latest
 # mod 'petems-swap_file',       :latest
 
