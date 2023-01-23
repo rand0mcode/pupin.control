@@ -46,7 +46,6 @@ mod 'pcfens-ca_cert',              :latest
 mod 'dylanratcliffe-facter_cache', :latest
 
 # testing
-mod 'choria-choria',          :latest
 # mod 'biemond-oradb',          :latest
 # mod 'petems-swap_file',       :latest
 
@@ -56,6 +55,16 @@ mod 'choria-choria',          :latest
 # mod 'tomkrieger-security_baseline',        :latest
 # mod 'herculesteam-augeasproviders_core',   :latest
 # mod 'herculesteam-augeasproviders_sysctl', :latest
+
+# choria / mcollective service bus
+mod 'choria-choria',             :latest
+mod 'choria-mcollective',        :latest
+mod 'choria-mcollective_choria', :latest
+mod 'choria-mcollective_agent_puppet',      :latest
+mod 'choria-mcollective_agent_package',     :latest
+mod 'choria-mcollective_agent_service',     :latest
+mod 'choria-mcollective_agent_filemgr',     :latest
+mod 'choria-mcollective_util_actionpolicy', :latest
 
 # cd4pe
 mod 'puppetlabs-cd4pe',                '3.2.5'
