@@ -7,7 +7,7 @@ choria::broker::network_broker: true
 
 mcollective::site_policies:
   - action: "allow"
-    callers: "choria=root.mcollective"
+    callers: "choria=robert.mcollective"
     actions: "*"
     facts: "*"
     classes: "*"
