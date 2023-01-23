@@ -4,10 +4,3 @@ classes:
 
 # be a choria broker server
 choria::broker::network_broker: true
-
-mcollective::site_policies:
-  - action: "allow"
-    callers: "choria=robert.mcollective"
-    actions: "*"
-    facts: "*"
-    classes: "*"

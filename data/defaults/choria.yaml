@@ -23,3 +23,10 @@ choria::server_config:
   plugin.choria.puppetdb_host: "puppetdb.priv.choria.rw.betadots.training"
   plugin.choria.puppetdb_port: 8081
   plugin.choria.middleware_hosts: "puppet.priv.choria.rw.betadots.training:4222"
+
+mcollective::site_policies:
+  - action: "allow"
+    callers: "choria=robert.mcollective"
+    actions: "*"
+    facts: "*"
+    classes: "*"
