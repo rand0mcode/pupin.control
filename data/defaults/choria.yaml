@@ -1,6 +1,6 @@
 ---
 mcollective::client: true
-choria::server: false
+choria::server: true # start choria client server
 choria::manage_package_repo: true
 choria::srvdomain: priv.choria.rw.betadots.training
 

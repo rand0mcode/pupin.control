@@ -2,6 +2,5 @@
 classes:
   - profile::monitoring::icinga::load_test
 
-# be able to use mco to trigger commands on choria network
-choria::server: true
+# be a choria broker server
 choria::broker::network_broker: true
