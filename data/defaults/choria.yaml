@@ -1,5 +1,25 @@
 ---
+mcollective::client: true
+choria::server: false
 choria::manage_package_repo: true
-# choria::version: 0.0.7-1.el%{facts.os.release.major}
 choria::srvdomain: priv.choria.rw.betadots.training
-choria::log_level: warn
+
+mcollective_choria::config:
+  security.serializer: "json"
+  use_srv: false
+  puppetserver_host: "puppet.priv.choria.rw.betadots.training"
+  puppetserver_port: 8140
+  puppetca_host: "puppetca.priv.choria.rw.betadots.training"
+  puppetca_port: 8140
+  puppetdb_host: "puppetdb.priv.choria.rw.betadots.training"
+  puppetdb_port: 8081
+  middleware_hosts: "puppet.priv.choria.rw.betadots.training:4222"
+
+choria::server_config:
+  plugin.choria.puppetserver_host: "puppet.priv.choria.rw.betadots.training"
+  plugin.choria.puppetserver_port: 8140
+  plugin.choria.puppetca_host: "puppetca.priv.choria.rw.betadots.training"
+  plugin.choria.puppetca_port: 8140
+  plugin.choria.puppetdb_host: "puppetdb.priv.choria.rw.betadots.training"
+  plugin.choria.puppetdb_port: 8081
+  plugin.choria.middleware_hosts: "puppet.priv.choria.rw.betadots.training:4222"

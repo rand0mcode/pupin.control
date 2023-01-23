@@ -20,6 +20,7 @@ class profile::puppet::compiler (
   Optional[Stdlib::Host] $puppetdb_host = undef,
 ) {
   include git
+  contain choria::broker
 
   firewall { '100 allow puppet access':
     dport  => [8140],
