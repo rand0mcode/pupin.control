@@ -22,5 +22,5 @@ heartbeat::outputs:
       - "http://elastic03.%{facts.networking.domain}:9200"
 
 
-additional_classes:
+classes:
   - profile::monitoring::icinga::load_test

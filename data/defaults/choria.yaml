@@ -1,0 +1,5 @@
+---
+choria::manage_package_repo: true
+# choria::version: 0.0.7-1.el%{facts.os.release.major}
+choria::srvdomain: priv.choria.rw.betadots.training
+choria::log_level: warn

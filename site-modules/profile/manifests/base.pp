@@ -19,10 +19,14 @@
 # @param enable_icinga
 #   toggle to activate icinga2 profiles
 #
+# @param enable_choria
+#   toggle to activate choria profiles
+#
 class profile::base (
   Boolean $enable_auditbeat  = true,
   Boolean $enable_filebeat   = true,
   Boolean $enable_metricbeat = true,
+  Boolean $enable_choria     = true,
   Boolean $enable_heartbeat  = false,
   Boolean $enable_icinga     = false,
   Boolean $enable_prometheus = false,
@@ -62,5 +66,9 @@ class profile::base (
 
   if $enable_icinga {
     include profile::monitoring::icinga::export
+  }
+
+  if $enable_choria {
+    include profile::puppet::choria
   }
 }
