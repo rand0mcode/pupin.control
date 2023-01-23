@@ -39,6 +39,7 @@ class profile::base (
 
   if $facts['os']['family'] == 'RedHat' { include profile::epel }
 
+  include stdlib::manage
   include profile::add
   include profile::puppet::agent
   include profile::monitoring::elastic::repo

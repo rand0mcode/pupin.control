@@ -1,21 +1,20 @@
 ---
 lookup_options:
-  profile::add::packages:
-    merge: deep
-  profile::add::files:
-    merge: deep
   filebeat::inputs:
     merge: deep
   puppet_agent::config:
     merge: deep
+  stdlib::manage::create_resources:
+    merge: 'deep'
 
-profile::add::packages:
-  glibc-langpack-de:
-    ensure: latest
-  dnf-plugins-core:
-    ensure: latest
-  vim:
-    ensure: latest
-  htop:
-    ensure: latest
-    require: Class[Epel]
+stdlib::manage::create_resources:
+  package:
+    glibc-langpack-de:
+      ensure: latest
+    dnf-plugins-core:
+      ensure: latest
+    vim:
+      ensure: latest
+    htop:
+      ensure: latest
+      require: 'Class[Epel]'

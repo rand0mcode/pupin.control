@@ -2,7 +2,3 @@
 puppet_enterprise::profile::master::code_manager_auto_configure: true
 puppet_enterprise::profile::master::r10k_remote: 'git@github.com:rand0mcode/pupin.control.git'
 puppet_enterprise::profile::master::r10k_private_key: '/opt/puppetlabs/server/data/puppetserver/.ssh/id_rsa'
-
-profile::add::packages:
-  nmap:
-    ensure: 'absent'
